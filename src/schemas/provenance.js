@@ -94,6 +94,14 @@ function createProvRecordV01({
  */
 
 /**
+ * Method IDs for envelope/adapter operations.
+ */
+const ADAPTER_METHODS = {
+  // Wrap request/response in MCP envelope
+  WRAP_ENVELOPE: "adapter.wrap.envelope_v0_1",
+};
+
+/**
  * Method IDs for evidence capture.
  */
 const EVIDENCE_METHODS = {
@@ -126,6 +134,7 @@ const DIAGNOSE_METHODS = {
 module.exports = {
   createProvenanceRecord,
   createProvRecordV01,
+  ADAPTER_METHODS,
   EVIDENCE_METHODS,
   DIAGNOSE_METHODS,
 };

@@ -41,14 +41,21 @@ a11y evidence --target index.html --dom-snapshot --out evidence.json
 # Diagnose captured evidence
 a11y diagnose --bundle evidence.json --fix
 
+# With provenance verification
+a11y diagnose --bundle evidence.json --verify-provenance --fix
+
+# Output with MCP envelope
+a11y evidence --target page.html --dom-snapshot --envelope
+
 # One-liner capture and diagnose
 a11y evidence --target page.html --dom-snapshot | a11y diagnose --fix
 ```
 
-**Exit Codes:**
-- `0` - Success (no findings)
-- `1` - Error
-- `2` - Findings detected
+**Exit Codes (CI-native):**
+- `0` - Success (no findings at/above `--fail-on`)
+- `2` - Findings exist (tool succeeded, but issues found)
+- `3` - Capture/validation failure (bad input, schema error)
+- `4` - Provenance verification failed (digest mismatch)
 
 ### As MCP Server
 
@@ -56,34 +63,54 @@ a11y evidence --target page.html --dom-snapshot | a11y diagnose --fix
 a11y-mcp
 ```
 
-### MCP Tool Requests
+### MCP Envelope Format (v0.1)
 
-**Evidence capture:**
+Requests and responses use a standard envelope:
+
+**Request:**
 ```json
 {
-  "tool": "a11y.evidence",
+  "mcp": {
+    "envelope": "mcp.envelope_v0_1",
+    "request_id": "req_01HR9Y6GQ7V8WQ0K8N9K",
+    "tool": "a11y.evidence",
+    "client": { "name": "a11y-cli", "version": "0.2.0" }
+  },
   "input": {
-    "targets": [
-      { "kind": "file", "path": "html/index.html" }
-    ],
-    "capture": {
-      "html": { "canonicalize": true },
-      "dom": { "snapshot": true }
-    }
+    "targets": [{ "kind": "file", "path": "html/index.html" }],
+    "capture": { "html": { "canonicalize": true }, "dom": { "snapshot": true } }
   }
 }
 ```
 
-**Diagnosis:**
+**Response:**
 ```json
 {
-  "tool": "a11y.diagnose",
-  "input": {
-    "bundle_id": "bundle-uuid",
-    "rules": { "include": ["lang", "alt", "button-name"] },
-    "output": {
-      "include_fix_guidance": true
-    }
+  "mcp": {
+    "envelope": "mcp.envelope_v0_1",
+    "request_id": "req_01HR9Y6GQ7V8WQ0K8N9K",
+    "tool": "a11y.evidence",
+    "ok": true
+  },
+  "result": {
+    "bundle": { ... }
+  }
+}
+```
+
+**Error:**
+```json
+{
+  "mcp": {
+    "envelope": "mcp.envelope_v0_1",
+    "request_id": "req_01HR9Y6GQ7V8WQ0K8N9K",
+    "tool": "a11y.diagnose",
+    "ok": false
+  },
+  "error": {
+    "code": "PROVENANCE_VERIFICATION_FAILED",
+    "message": "Evidence digest mismatch for artifact:dom:index.",
+    "fix": "Re-run a11y.evidence to recapture evidence."
   }
 }
 ```
@@ -92,19 +119,21 @@ a11y-mcp
 
 JSON Schemas are provided for validation:
 
+- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCP envelope format
 - [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Evidence bundle format
 - [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Diagnosis output format
 
 ## Method ID Catalog (v0.1)
 
-Stable method IDs for provenance tracking:
+Stable method IDs for provenance tracking. See [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) for full documentation.
 
 | Method ID | Description |
 |-----------|-------------|
+| `adapter.wrap.envelope_v0_1` | Wrap in MCP envelope |
+| `adapter.provenance.record_v0_1` | Provenance record creation |
+| `adapter.integrity.sha256_v0_1` | SHA-256 integrity verification |
 | `engine.capture.html_canonicalize_v0_1` | HTML capture with canonicalization |
 | `engine.capture.dom_snapshot_v0_1` | DOM snapshot extraction |
-| `adapter.integrity.sha256_v0_1` | SHA-256 integrity verification |
-| `adapter.provenance.record_v0_1` | Provenance record creation |
 | `engine.diagnose.wcag_rules_v0_1` | WCAG rule evaluation |
 | `engine.extract.evidence.json_pointer_v0_1` | JSON Pointer evidence extraction |
 | `engine.extract.evidence.selector_v0_1` | CSS selector evidence extraction |

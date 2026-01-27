@@ -5,21 +5,29 @@
  * a11y CLI - Command-line interface for a11y MCP tools.
  *
  * Maps directly to MCP tool calls with standard exit codes:
- *   0 = clean (no findings)
- *   1 = error
- *   2 = findings detected
+ *   0 = success, no findings at/above --fail-on
+ *   2 = success, findings exist (but not a tool failure)
+ *   3 = capture/validation failure (bad input, schema fail, etc.)
+ *   4 = provenance verification failed (digest mismatch)
  */
 
 const fs = require("fs");
 const path = require("path");
 const { evidence, diagnose } = require("../src/tools/index.js");
+const {
+  createRequestEnvelope,
+  createResponseEnvelope,
+  createErrorEnvelope,
+  ERROR_CODES,
+} = require("../src/envelope.js");
 
-const VERSION = "0.1.0";
+const VERSION = "0.2.0";
 
-// Exit codes
-const EXIT_OK = 0;
-const EXIT_ERROR = 1;
-const EXIT_FINDINGS = 2;
+// Exit codes (CI-native)
+const EXIT_OK = 0;              // Success, no findings
+const EXIT_FINDINGS = 2;        // Success, findings exist
+const EXIT_VALIDATION = 3;      // Capture/validation failure
+const EXIT_PROVENANCE = 4;      // Provenance verification failed
 
 /**
  * Parse command-line arguments.
@@ -51,8 +59,11 @@ function parseArgs(args) {
         nextArg.startsWith("-") ||
         key === "dom-snapshot" ||
         key === "canonicalize" ||
+        key === "strip-dynamic" ||
         key === "fix" ||
         key === "json" ||
+        key === "envelope" ||
+        key === "verify-provenance" ||
         key === "help" ||
         key === "version"
       ) {
@@ -94,8 +105,10 @@ EVIDENCE OPTIONS:
   --target <path>       File to capture (can be repeated)
   --dom-snapshot        Include DOM snapshot artifact
   --canonicalize        Canonicalize HTML content
+  --strip-dynamic       Strip dynamic attributes (React, Vue, Angular)
   --label <label>       Add label to artifacts (can be repeated)
   --out <path>          Output bundle to file (default: stdout)
+  --envelope            Wrap output in MCP envelope
 
 DIAGNOSE OPTIONS:
   --bundle <path>       Path to evidence bundle JSON
@@ -103,17 +116,22 @@ DIAGNOSE OPTIONS:
   --rules <rules>       Comma-separated rule names to run
   --exclude <rules>     Comma-separated rules to exclude
   --fix                 Include fix guidance in findings
+  --verify-provenance   Verify artifact digests before diagnosis
+  --fail-on <severity>  Exit 2 if findings at/above severity (default: low)
   --out <path>          Output diagnosis to file (default: stdout)
+  --envelope            Wrap output in MCP envelope
 
 GLOBAL OPTIONS:
   --json                Output as JSON (default)
+  --envelope            Wrap output in MCP envelope
   --help, -h            Show this help message
   --version, -v         Show version
 
 EXIT CODES:
-  0  Success (no findings)
-  1  Error
-  2  Findings detected
+  0  Success (no findings at/above --fail-on)
+  2  Findings exist (tool succeeded, but issues found)
+  3  Capture/validation failure (bad input, schema error)
+  4  Provenance verification failed (digest mismatch)
 
 EXAMPLES:
   # Capture evidence from HTML file
@@ -121,6 +139,12 @@ EXAMPLES:
 
   # Diagnose captured evidence
   a11y diagnose --bundle evidence.json --fix
+
+  # With provenance verification
+  a11y diagnose --bundle evidence.json --verify-provenance --fix
+
+  # Output with MCP envelope
+  a11y evidence --target page.html --envelope
 
   # One-liner capture and diagnose
   a11y evidence --target page.html --dom-snapshot | a11y diagnose --fix
@@ -151,7 +175,7 @@ async function handleEvidence(flags, positional) {
 
   if (targets.length === 0) {
     console.error("Error: No targets specified. Use --target <path>");
-    process.exit(EXIT_ERROR);
+    process.exit(EXIT_VALIDATION);
   }
 
   // Build capture options
@@ -170,6 +194,10 @@ async function handleEvidence(flags, positional) {
     capture.html.canonicalize = true;
   }
 
+  if (flags["strip-dynamic"]) {
+    capture.html.strip_dynamic = true;
+  }
+
   // Collect labels
   const labels = [];
   if (flags.label) {
@@ -177,17 +205,39 @@ async function handleEvidence(flags, positional) {
     labels.push(...labelList);
   }
 
-  // Execute
+  // Build input
   const input = { targets, capture, labels };
+
+  // Execute
   const result = await evidence.execute(input);
 
   if (!result.ok) {
-    console.error(`Error: ${result.error.message}`);
-    process.exit(EXIT_ERROR);
+    if (flags.envelope) {
+      const errorEnvelope = createErrorEnvelope(
+        `req_cli_${Date.now()}`,
+        "a11y.evidence",
+        result.error?.code || ERROR_CODES.CAPTURE_FAILED,
+        result.error?.message || "Evidence capture failed"
+      );
+      console.log(JSON.stringify(errorEnvelope, null, 2));
+    } else {
+      console.error(`Error: ${result.error.message}`);
+    }
+    process.exit(EXIT_VALIDATION);
   }
 
   // Output
-  const output = JSON.stringify(result.bundle, null, 2);
+  let output;
+  if (flags.envelope) {
+    const envelope = createResponseEnvelope(
+      `req_cli_${Date.now()}`,
+      "a11y.evidence",
+      { bundle: result.bundle }
+    );
+    output = JSON.stringify(envelope, null, 2);
+  } else {
+    output = JSON.stringify(result.bundle, null, 2);
+  }
 
   if (flags.out) {
     fs.writeFileSync(flags.out, output + "\n");
@@ -210,17 +260,27 @@ async function handleDiagnose(flags, positional) {
     const bundlePath = path.resolve(flags.bundle);
     if (!fs.existsSync(bundlePath)) {
       console.error(`Error: Bundle file not found: ${bundlePath}`);
-      process.exit(EXIT_ERROR);
+      process.exit(EXIT_VALIDATION);
     }
-    bundle = JSON.parse(fs.readFileSync(bundlePath, "utf8"));
+    try {
+      bundle = JSON.parse(fs.readFileSync(bundlePath, "utf8"));
+    } catch (err) {
+      console.error(`Error: Failed to parse bundle: ${err.message}`);
+      process.exit(EXIT_VALIDATION);
+    }
   } else if (positional.length > 0) {
     // First positional as bundle path
     const bundlePath = path.resolve(positional[0]);
     if (!fs.existsSync(bundlePath)) {
       console.error(`Error: Bundle file not found: ${bundlePath}`);
-      process.exit(EXIT_ERROR);
+      process.exit(EXIT_VALIDATION);
     }
-    bundle = JSON.parse(fs.readFileSync(bundlePath, "utf8"));
+    try {
+      bundle = JSON.parse(fs.readFileSync(bundlePath, "utf8"));
+    } catch (err) {
+      console.error(`Error: Failed to parse bundle: ${err.message}`);
+      process.exit(EXIT_VALIDATION);
+    }
   } else {
     // Read from stdin
     const stdin = fs.readFileSync(0, "utf8");
@@ -228,7 +288,7 @@ async function handleDiagnose(flags, positional) {
       bundle = JSON.parse(stdin);
     } catch (err) {
       console.error("Error: Failed to parse bundle from stdin");
-      process.exit(EXIT_ERROR);
+      process.exit(EXIT_VALIDATION);
     }
   }
 
@@ -247,17 +307,50 @@ async function handleDiagnose(flags, positional) {
     outputOptions.include_fix_guidance = true;
   }
 
+  // Build integrity options
+  const integrity = {};
+  if (flags["verify-provenance"]) {
+    integrity.verify_provenance = true;
+  }
+
   // Execute
-  const input = { bundle, rules, output: outputOptions };
+  const input = { bundle, rules, output: outputOptions, integrity };
   const result = await diagnose.execute(input);
 
   if (!result.ok) {
-    console.error(`Error: ${result.error.message}`);
-    process.exit(EXIT_ERROR);
+    // Check for provenance verification failure
+    const isProvenanceError =
+      result.error?.code === ERROR_CODES.PROVENANCE_VERIFICATION_FAILED ||
+      result.error?.code === ERROR_CODES.DIGEST_MISMATCH;
+
+    if (flags.envelope) {
+      const errorEnvelope = createErrorEnvelope(
+        `req_cli_${Date.now()}`,
+        "a11y.diagnose",
+        result.error?.code || ERROR_CODES.INTERNAL_ERROR,
+        result.error?.message || "Diagnosis failed",
+        result.error?.fix
+      );
+      console.log(JSON.stringify(errorEnvelope, null, 2));
+    } else {
+      console.error(`Error: ${result.error.message}`);
+    }
+
+    process.exit(isProvenanceError ? EXIT_PROVENANCE : EXIT_VALIDATION);
   }
 
   // Output
-  const output = JSON.stringify(result.diagnosis, null, 2);
+  let output;
+  if (flags.envelope) {
+    const envelope = createResponseEnvelope(
+      `req_cli_${Date.now()}`,
+      "a11y.diagnose",
+      { diagnosis: result.diagnosis }
+    );
+    output = JSON.stringify(envelope, null, 2);
+  } else {
+    output = JSON.stringify(result.diagnosis, null, 2);
+  }
 
   if (flags.out) {
     fs.writeFileSync(flags.out, output + "\n");
@@ -269,8 +362,22 @@ async function handleDiagnose(flags, positional) {
   // Exit based on findings
   const findingsCount = result.diagnosis.summary.findings_total;
   if (findingsCount > 0) {
-    console.error(`Found ${findingsCount} accessibility issue(s)`);
-    process.exit(EXIT_FINDINGS);
+    // Check --fail-on threshold
+    const failOn = flags["fail-on"] || "low";
+    const severityOrder = ["low", "medium", "high", "critical"];
+    const failIndex = severityOrder.indexOf(failOn);
+
+    // Count findings at or above threshold
+    const counts = result.diagnosis.summary.severity_counts;
+    let failingCount = 0;
+    for (let i = failIndex; i < severityOrder.length; i++) {
+      failingCount += counts[severityOrder[i]] || 0;
+    }
+
+    if (failingCount > 0) {
+      console.error(`Found ${failingCount} issue(s) at/above '${failOn}' severity`);
+      process.exit(EXIT_FINDINGS);
+    }
   }
 
   process.exit(EXIT_OK);
@@ -315,11 +422,11 @@ async function main() {
         console.error(`Unknown command: ${command}`);
       }
       printHelp();
-      process.exit(EXIT_ERROR);
+      process.exit(EXIT_VALIDATION);
   }
 }
 
 main().catch((err) => {
   console.error(`Fatal error: ${err.message}`);
-  process.exit(EXIT_ERROR);
+  process.exit(EXIT_VALIDATION);
 });
