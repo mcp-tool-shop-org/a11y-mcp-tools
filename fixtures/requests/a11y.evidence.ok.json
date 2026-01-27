@@ -11,7 +11,8 @@
   "input": {
     "targets": [
       { "kind": "file", "path": "html/index.html" },
-      { "kind": "file", "path": "html/contact.html" }
+      { "kind": "file", "path": "html/contact.html" },
+      { "kind": "cli_log", "path": "runs/latest.log" }
     ],
     "capture": {
       "html": { "canonicalize": true, "strip_dynamic": true },
