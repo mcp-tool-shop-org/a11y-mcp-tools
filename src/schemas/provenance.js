@@ -87,15 +87,25 @@ function createProvRecordV01({
 }
 
 /**
+ * Locked Method ID Catalog (v0.1)
+ *
+ * These IDs are stable and MUST NOT change within a major version.
+ * See: https://github.com/mcp-tool-shop/prov-spec
+ */
+
+/**
  * Method IDs for evidence capture.
  */
 const EVIDENCE_METHODS = {
-  CAPTURE_HTML: "engine.capture.html_v0_1",
-  CAPTURE_DOM: "engine.extract.evidence.dom_snapshot_v0_1",
+  // Capture raw HTML with canonicalization
+  CAPTURE_HTML: "engine.capture.html_canonicalize_v0_1",
+  // Extract DOM snapshot for analysis
+  CAPTURE_DOM: "engine.capture.dom_snapshot_v0_1",
+  // Generic file capture
   CAPTURE_FILE: "engine.capture.file_v0_1",
-  CANONICALIZE: "adapter.canonicalize.html_v0_1",
-  INTEGRITY_SHA256: "integrity.digest.sha256",
-  WRAP_ENVELOPE: "adapter.wrap.envelope_v0_1",
+  // SHA-256 integrity verification
+  INTEGRITY_SHA256: "adapter.integrity.sha256_v0_1",
+  // Provenance record creation
   PROVENANCE_RECORD: "adapter.provenance.record_v0_1",
 };
 
@@ -103,8 +113,13 @@ const EVIDENCE_METHODS = {
  * Method IDs for diagnosis.
  */
 const DIAGNOSE_METHODS = {
+  // WCAG rule evaluation engine
   WCAG_RULES: "engine.diagnose.wcag_rules_v0_1",
-  EXTRACT_POINTER: "engine.extract.evidence.json_pointer",
+  // JSON Pointer evidence extraction
+  EXTRACT_POINTER: "engine.extract.evidence.json_pointer_v0_1",
+  // CSS selector evidence extraction
+  EXTRACT_SELECTOR: "engine.extract.evidence.selector_v0_1",
+  // Fix guidance generation
   GENERATE_FIX: "engine.generate.fix_guidance_v0_1",
 };
 

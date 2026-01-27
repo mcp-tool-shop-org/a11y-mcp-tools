@@ -75,9 +75,6 @@ async function captureEvidence(input) {
   // Track methods used
   if (artifacts.some((a) => a.labels.includes("html"))) {
     methods.push(EVIDENCE_METHODS.CAPTURE_HTML);
-    if (capture.html?.canonicalize) {
-      methods.push(EVIDENCE_METHODS.CANONICALIZE);
-    }
   }
   if (artifacts.some((a) => a.labels.includes("dom-snapshot"))) {
     methods.push(EVIDENCE_METHODS.CAPTURE_DOM);
@@ -87,7 +84,6 @@ async function captureEvidence(input) {
   }
 
   methods.push(EVIDENCE_METHODS.INTEGRITY_SHA256);
-  methods.push(EVIDENCE_METHODS.WRAP_ENVELOPE);
   methods.push(EVIDENCE_METHODS.PROVENANCE_RECORD);
 
   // Build provenance record
