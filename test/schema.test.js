@@ -59,10 +59,10 @@ function createValidator() {
 }
 
 describe("Schema Validation", () => {
-  describe("a11y.evidence tool schema", () => {
+  describe("a11y.evidence request schema", () => {
     it("should validate evidence request fixture", () => {
       const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.tool.schema.v0.1.json"));
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.request.schema.v0.1.json"));
       const fixture = loadJson(path.join(FIXTURES_DIR, "requests/a11y.evidence.ok.json"));
 
       const validate = ajv.compile(schema);
@@ -77,13 +77,14 @@ describe("Schema Validation", () => {
 
     it("should reject invalid evidence request (missing targets)", () => {
       const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.tool.schema.v0.1.json"));
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.request.schema.v0.1.json"));
 
       const invalidRequest = {
         mcp: {
           envelope: "mcp.envelope_v0_1",
           request_id: "req_test",
           tool: "a11y.evidence",
+          client: { name: "test", version: "1.0.0" },
         },
         input: {
           capture: { html: { canonicalize: true } },
@@ -98,13 +99,14 @@ describe("Schema Validation", () => {
 
     it("should reject evidence request with wrong tool name", () => {
       const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.tool.schema.v0.1.json"));
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.request.schema.v0.1.json"));
 
       const invalidRequest = {
         mcp: {
           envelope: "mcp.envelope_v0_1",
           request_id: "req_test",
           tool: "a11y.diagnose",
+          client: { name: "test", version: "1.0.0" },
         },
         input: {
           targets: [{ kind: "file", path: "test.html" }],
@@ -119,13 +121,14 @@ describe("Schema Validation", () => {
 
     it("should require path for file targets", () => {
       const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.tool.schema.v0.1.json"));
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.request.schema.v0.1.json"));
 
       const invalidRequest = {
         mcp: {
           envelope: "mcp.envelope_v0_1",
           request_id: "req_test",
           tool: "a11y.evidence",
+          client: { name: "test", version: "1.0.0" },
         },
         input: {
           targets: [{ kind: "file" }],
@@ -137,12 +140,35 @@ describe("Schema Validation", () => {
 
       assert.strictEqual(valid, false, "Should reject file target without path");
     });
+
+    it("should reject request with mcp.ok field (requests must not have ok)", () => {
+      const ajv = createValidator();
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.evidence.request.schema.v0.1.json"));
+
+      const invalidRequest = {
+        mcp: {
+          envelope: "mcp.envelope_v0_1",
+          request_id: "req_test",
+          tool: "a11y.evidence",
+          client: { name: "test", version: "1.0.0" },
+          ok: true,
+        },
+        input: {
+          targets: [{ kind: "file", path: "test.html" }],
+        },
+      };
+
+      const validate = ajv.compile(schema);
+      const valid = validate(invalidRequest);
+
+      assert.strictEqual(valid, false, "Should reject request with ok field");
+    });
   });
 
-  describe("a11y.diagnose tool schema", () => {
+  describe("a11y.diagnose request schema", () => {
     it("should validate diagnose request fixture", () => {
       const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.tool.schema.v0.1.json"));
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.request.schema.v0.1.json"));
       const fixture = loadJson(path.join(FIXTURES_DIR, "requests/a11y.diagnose.ok.json"));
 
       const validate = ajv.compile(schema);
@@ -155,17 +181,19 @@ describe("Schema Validation", () => {
       assert.strictEqual(valid, true, `Diagnose request should be valid: ${JSON.stringify(validate.errors)}`);
     });
 
-    it("should reject diagnose request without bundle_id or bundle", () => {
+    it("should reject diagnose request without bundle_id", () => {
       const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.tool.schema.v0.1.json"));
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.request.schema.v0.1.json"));
 
       const invalidRequest = {
         mcp: {
           envelope: "mcp.envelope_v0_1",
           request_id: "req_test",
           tool: "a11y.diagnose",
+          client: { name: "test", version: "1.0.0" },
         },
         input: {
+          artifacts: ["artifact:dom:index"],
           profile: "wcag-2.2-aa",
         },
       };
@@ -173,51 +201,53 @@ describe("Schema Validation", () => {
       const validate = ajv.compile(schema);
       const valid = validate(invalidRequest);
 
-      assert.strictEqual(valid, false, "Should reject request without bundle_id or bundle");
+      assert.strictEqual(valid, false, "Should reject request without bundle_id");
     });
 
-    it("should accept diagnose request with inline bundle", () => {
+    it("should reject diagnose request without artifacts", () => {
       const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.tool.schema.v0.1.json"));
-
-      const validRequest = {
-        mcp: {
-          envelope: "mcp.envelope_v0_1",
-          request_id: "req_test",
-          tool: "a11y.diagnose",
-        },
-        input: {
-          bundle: { bundle_id: "test", artifacts: [], provenance: {} },
-          profile: "wcag-2.2-aa",
-        },
-      };
-
-      const validate = ajv.compile(schema);
-      const valid = validate(validRequest);
-
-      assert.strictEqual(valid, true, "Should accept request with inline bundle");
-    });
-
-    it("should validate profile enum values", () => {
-      const ajv = createValidator();
-      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.tool.schema.v0.1.json"));
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.request.schema.v0.1.json"));
 
       const invalidRequest = {
         mcp: {
           envelope: "mcp.envelope_v0_1",
           request_id: "req_test",
           tool: "a11y.diagnose",
+          client: { name: "test", version: "1.0.0" },
         },
         input: {
-          bundle_id: "test",
-          profile: "wcag-3.0-aaa",
+          bundle_id: "bundle:test:12345678",
+          profile: "wcag-2.2-aa",
         },
       };
 
       const validate = ajv.compile(schema);
       const valid = validate(invalidRequest);
 
-      assert.strictEqual(valid, false, "Should reject invalid profile value");
+      assert.strictEqual(valid, false, "Should reject request without artifacts");
+    });
+
+    it("should reject diagnose request without profile", () => {
+      const ajv = createValidator();
+      const schema = loadSchema(path.join(TOOLS_SCHEMAS_DIR, "a11y.diagnose.request.schema.v0.1.json"));
+
+      const invalidRequest = {
+        mcp: {
+          envelope: "mcp.envelope_v0_1",
+          request_id: "req_test",
+          tool: "a11y.diagnose",
+          client: { name: "test", version: "1.0.0" },
+        },
+        input: {
+          bundle_id: "bundle:test:12345678",
+          artifacts: ["artifact:dom:index"],
+        },
+      };
+
+      const validate = ajv.compile(schema);
+      const valid = validate(invalidRequest);
+
+      assert.strictEqual(valid, false, "Should reject request without profile");
     });
   });
 

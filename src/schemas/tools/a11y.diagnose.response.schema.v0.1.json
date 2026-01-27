@@ -1,76 +1,50 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mcp-tool-shop.github.io/schemas/tools/a11y.diagnose.response.schema.v0.1.json",
-  "title": "Response Schema: a11y.diagnose v0.1",
-  "oneOf": [
-    { "$ref": "#/$defs/SuccessResponse" },
-    { "$ref": "#/$defs/ErrorResponse" }
-  ],
-  "$defs": {
-    "SuccessResponse": {
+  "title": "Tool Response Schema: a11y.diagnose v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mcp"],
+  "properties": {
+    "mcp": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["mcp", "result"],
+      "required": ["envelope", "request_id", "tool", "ok"],
       "properties": {
-        "mcp": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["envelope", "request_id", "tool", "ok"],
-          "properties": {
-            "envelope": { "const": "mcp.envelope_v0_1" },
-            "request_id": { "type": "string", "minLength": 1 },
-            "tool": { "const": "a11y.diagnose" },
-            "ok": { "const": true }
-          }
-        },
-        "result": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["diagnosis"],
-          "properties": {
-            "diagnosis": { "$ref": "https://mcp-tool-shop.github.io/schemas/diagnosis.v0.1.json" }
-          }
-        }
+        "envelope": { "const": "mcp.envelope_v0_1" },
+        "request_id": { "type": "string", "minLength": 1 },
+        "tool": { "const": "a11y.diagnose" },
+        "ok": { "type": "boolean" }
+      },
+      "not": { "required": ["client"] }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["diagnosis"],
+      "properties": {
+        "diagnosis": { "$ref": "https://mcp-tool-shop.github.io/schemas/diagnosis.v0.1.json" }
       }
     },
-    "ErrorResponse": {
+    "error": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["mcp", "error"],
+      "required": ["code", "message", "fix"],
       "properties": {
-        "mcp": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["envelope", "request_id", "tool", "ok"],
-          "properties": {
-            "envelope": { "const": "mcp.envelope_v0_1" },
-            "request_id": { "type": "string", "minLength": 1 },
-            "tool": { "const": "a11y.diagnose" },
-            "ok": { "const": false }
-          }
-        },
-        "error": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["code", "message"],
-          "properties": {
-            "code": {
-              "type": "string",
-              "enum": [
-                "INVALID_INPUT",
-                "BUNDLE_NOT_FOUND",
-                "ARTIFACT_NOT_FOUND",
-                "INVALID_BUNDLE",
-                "PROVENANCE_VERIFICATION_FAILED",
-                "DIGEST_MISMATCH",
-                "INTERNAL_ERROR"
-              ]
-            },
-            "message": { "type": "string", "minLength": 1 },
-            "fix": { "type": "string" }
-          }
-        }
+        "code": { "type": "string", "minLength": 1 },
+        "message": { "type": "string", "minLength": 1 },
+        "fix": { "type": "string", "minLength": 1 }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "mcp": { "properties": { "ok": { "const": true } } } } },
+      "then": { "required": ["result"], "not": { "required": ["error"] } }
+    },
+    {
+      "if": { "properties": { "mcp": { "properties": { "ok": { "const": false } } } } },
+      "then": { "required": ["error"], "not": { "required": ["result"] } }
+    }
+  ]
 }

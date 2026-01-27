@@ -23,9 +23,7 @@ function loadSchema(relPath) {
 
 /**
  * Creates an AJV instance with all schemas loaded.
- * Wires up local file refs for:
- *  - evidence.bundle.schema.v0.1.json
- *  - diagnosis.schema.v0.1.json
+ * Uses split request/response schemas for stricter validation.
  */
 function makeAjv() {
   const ajv = new Ajv2020({ allErrors: true, strict: false, verbose: true });
@@ -38,14 +36,17 @@ function makeAjv() {
   ajv.addSchema(evidenceBundle, "https://mcp-tool-shop.github.io/schemas/evidence.bundle.v0.1.json");
   ajv.addSchema(diagnosis, "https://mcp-tool-shop.github.io/schemas/diagnosis.v0.1.json");
 
-  // Tool schemas
-  const toolEvidence = loadSchema("src/schemas/tools/a11y.evidence.tool.schema.v0.1.json");
-  const toolDiagnose = loadSchema("src/schemas/tools/a11y.diagnose.tool.schema.v0.1.json");
+  // Split request schemas
+  const reqEvidence = loadSchema("src/schemas/tools/a11y.evidence.request.schema.v0.1.json");
+  const reqDiagnose = loadSchema("src/schemas/tools/a11y.diagnose.request.schema.v0.1.json");
+
+  ajv.addSchema(reqEvidence, "tools/a11y.evidence.request.schema.v0.1.json");
+  ajv.addSchema(reqDiagnose, "tools/a11y.diagnose.request.schema.v0.1.json");
+
+  // Split response schemas
   const respEvidence = loadSchema("src/schemas/tools/a11y.evidence.response.schema.v0.1.json");
   const respDiagnose = loadSchema("src/schemas/tools/a11y.diagnose.response.schema.v0.1.json");
 
-  ajv.addSchema(toolEvidence, "tools/a11y.evidence.tool.schema.v0.1.json");
-  ajv.addSchema(toolDiagnose, "tools/a11y.diagnose.tool.schema.v0.1.json");
   ajv.addSchema(respEvidence, "tools/a11y.evidence.response.schema.v0.1.json");
   ajv.addSchema(respDiagnose, "tools/a11y.diagnose.response.schema.v0.1.json");
 
@@ -62,20 +63,20 @@ function validateOrThrow(ajv, schemaKey, data, label) {
   }
 }
 
-// Request fixture tests
-test("a11y.evidence request fixture validates against tool schema", () => {
+// Request fixture tests (use request schemas)
+test("a11y.evidence request fixture validates against request schema", () => {
   const ajv = makeAjv();
   const req = readJson("fixtures/requests/a11y.evidence.ok.json");
-  validateOrThrow(ajv, "tools/a11y.evidence.tool.schema.v0.1.json", req, "a11y.evidence request");
+  validateOrThrow(ajv, "tools/a11y.evidence.request.schema.v0.1.json", req, "a11y.evidence request");
 });
 
-test("a11y.diagnose request fixture validates against tool schema", () => {
+test("a11y.diagnose request fixture validates against request schema", () => {
   const ajv = makeAjv();
   const req = readJson("fixtures/requests/a11y.diagnose.ok.json");
-  validateOrThrow(ajv, "tools/a11y.diagnose.tool.schema.v0.1.json", req, "a11y.diagnose request");
+  validateOrThrow(ajv, "tools/a11y.diagnose.request.schema.v0.1.json", req, "a11y.diagnose request");
 });
 
-// Response fixture tests
+// Response fixture tests (use response schemas)
 test("a11y.evidence response fixture validates against response schema", () => {
   const ajv = makeAjv();
   const res = readJson("fixtures/responses/a11y.evidence.ok.json");
@@ -89,7 +90,7 @@ test("a11y.diagnose response fixture validates against response schema", () => {
 });
 
 // Error envelope tests
-test("a11y.diagnose provenance-fail error envelope validates", () => {
+test("a11y.diagnose provenance-fail error envelope validates against response schema", () => {
   const ajv = makeAjv();
   const err = readJson("fixtures/responses/a11y.diagnose.provenance_fail.json");
 
@@ -103,8 +104,27 @@ test("a11y.diagnose provenance-fail error envelope validates", () => {
   assert.ok(err.error?.message, "Error must have message");
   assert.ok(err.error?.fix, "Error must have fix guidance");
 
-  // Validate against response schema (should match ErrorResponse variant)
+  // Validate against response schema (should match ok=false branch)
   validateOrThrow(ajv, "tools/a11y.diagnose.response.schema.v0.1.json", err, "a11y.diagnose error response");
+});
+
+// Negative tests: request should NOT validate against response schema (and vice versa)
+test("a11y.evidence request should NOT validate against response schema", () => {
+  const ajv = makeAjv();
+  const req = readJson("fixtures/requests/a11y.evidence.ok.json");
+  const validate = ajv.getSchema("tools/a11y.evidence.response.schema.v0.1.json");
+  assert.ok(validate, "Missing schema");
+  const ok = validate(req);
+  assert.equal(ok, false, "Request should NOT validate against response schema");
+});
+
+test("a11y.evidence response should NOT validate against request schema", () => {
+  const ajv = makeAjv();
+  const res = readJson("fixtures/responses/a11y.evidence.ok.json");
+  const validate = ajv.getSchema("tools/a11y.evidence.request.schema.v0.1.json");
+  assert.ok(validate, "Missing schema");
+  const ok = validate(res);
+  assert.equal(ok, false, "Response should NOT validate against request schema");
 });
 
 // Cross-fixture consistency tests
