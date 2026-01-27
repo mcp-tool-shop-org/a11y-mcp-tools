@@ -113,6 +113,8 @@ EVIDENCE OPTIONS:
 DIAGNOSE OPTIONS:
   --bundle <path>       Path to evidence bundle JSON
   --bundle-id <id>      Bundle ID (when using MCP server)
+  --profile <profile>   WCAG profile (wcag-2.0-a, wcag-2.0-aa, wcag-2.1-a,
+                        wcag-2.1-aa, wcag-2.2-a, wcag-2.2-aa) (default: wcag-2.2-aa)
   --rules <rules>       Comma-separated rule names to run
   --exclude <rules>     Comma-separated rules to exclude
   --fix                 Include fix guidance in findings
@@ -139,6 +141,9 @@ EXAMPLES:
 
   # Diagnose captured evidence
   a11y diagnose --bundle evidence.json --fix
+
+  # Diagnose with specific WCAG profile
+  a11y diagnose --bundle evidence.json --profile wcag-2.1-aa --fix
 
   # With provenance verification
   a11y diagnose --bundle evidence.json --verify-provenance --fix
@@ -313,8 +318,23 @@ async function handleDiagnose(flags, positional) {
     integrity.verify_provenance = true;
   }
 
+  // Get profile (default wcag-2.2-aa)
+  const profile = flags.profile || "wcag-2.2-aa";
+  const validProfiles = [
+    "wcag-2.0-a",
+    "wcag-2.0-aa",
+    "wcag-2.1-a",
+    "wcag-2.1-aa",
+    "wcag-2.2-a",
+    "wcag-2.2-aa",
+  ];
+  if (!validProfiles.includes(profile)) {
+    console.error(`Error: Invalid profile '${profile}'. Valid profiles: ${validProfiles.join(", ")}`);
+    process.exit(EXIT_VALIDATION);
+  }
+
   // Execute
-  const input = { bundle, rules, output: outputOptions, integrity };
+  const input = { bundle, rules, output: outputOptions, integrity, profile };
   const result = await diagnose.execute(input);
 
   if (!result.ok) {

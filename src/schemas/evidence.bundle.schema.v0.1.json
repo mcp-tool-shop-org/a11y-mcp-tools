@@ -8,7 +8,7 @@
   "properties": {
     "bundle_id": {
       "type": "string",
-      "pattern": "^bundle:[a-z0-9-]+:[a-f0-9]{8}$",
+      "pattern": "^bundle:[a-z0-9_-]+:[a-f0-9]{8}$",
       "description": "Unique bundle identifier"
     },
     "artifacts": {
@@ -21,10 +21,36 @@
       "type": "object",
       "description": "Optional capture environment info",
       "properties": {
-        "os": { "type": "string" },
+        "os": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "object",
+              "properties": {
+                "platform": { "type": "string" },
+                "arch": { "type": "string" }
+              }
+            }
+          ]
+        },
         "node": { "type": "string" },
-        "browser": { "type": "string" }
-      }
+        "browser": { "type": "string" },
+        "tool_versions": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "labels": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "User-supplied classification labels"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Bundle creation timestamp"
     }
   },
   "$defs": {
@@ -34,10 +60,23 @@
       "properties": {
         "artifact_id": {
           "type": "string",
-          "pattern": "^artifact:[a-z]+:[a-f0-9]{8}$"
+          "pattern": "^artifact:[a-z]+:[a-z0-9_-]+$"
         },
         "media_type": { "type": "string" },
-        "locator": { "type": "string", "format": "uri" },
+        "locator": {
+          "oneOf": [
+            { "type": "string", "format": "uri" },
+            {
+              "type": "object",
+              "properties": {
+                "kind": { "type": "string", "enum": ["file", "derived", "url"] },
+                "path": { "type": "string" },
+                "from": { "type": "string" },
+                "url": { "type": "string", "format": "uri" }
+              }
+            }
+          ]
+        },
         "size_bytes": { "type": "integer", "minimum": 0 },
         "digest": { "$ref": "#/$defs/Digest" },
         "labels": {
@@ -60,7 +99,7 @@
       "properties": {
         "record_id": {
           "type": "string",
-          "pattern": "^prov:[a-z]+:[a-f0-9-]+$"
+          "pattern": "^prov:[a-z]+:[a-z0-9_-]+$"
         },
         "methods": {
           "type": "array",
