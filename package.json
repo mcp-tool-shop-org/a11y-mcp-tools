@@ -1,5 +1,5 @@
 {
-  "name": "@mcp-tool-shop/a11y-mcp-tools",
+  "name": "@mcptoolshop/a11y-mcp-tools",
   "version": "0.3.0",
   "description": "MCP tools for accessibility evidence capture and diagnosis",
   "main": "src/index.js",
@@ -40,5 +40,9 @@
   "devDependencies": {
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
