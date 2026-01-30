@@ -1,3 +1,8 @@
+> ⚠️ **This repository has moved to [accessibility-suite](https://github.com/mcp-tool-shop/accessibility-suite)**
+> Source now lives at: `src/a11y-mcp-tools/`
+
+---
+
 # a11y-mcp-tools
 
 MCP (Model Context Protocol) tools for accessibility evidence capture and diagnosis.
