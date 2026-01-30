@@ -1,6 +1,6 @@
 {
-  "name": "a11y-mcp-tools",
-  "version": "0.2.0",
+  "name": "@mcp-tool-shop/a11y-mcp-tools",
+  "version": "0.3.0",
   "description": "MCP tools for accessibility evidence capture and diagnosis",
   "main": "src/index.js",
   "bin": {
