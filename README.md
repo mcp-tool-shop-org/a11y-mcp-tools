@@ -1,9 +1,7 @@
-> ⚠️ **This repository has moved to [accessibility-suite](https://github.com/mcp-tool-shop/accessibility-suite)**
-> Source now lives at: `src/a11y-mcp-tools/`
-
----
-
 # a11y-mcp-tools
+
+[![CI](https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 MCP (Model Context Protocol) tools for accessibility evidence capture and diagnosis.
 
@@ -163,10 +161,10 @@ Both tools work with a shared artifact/provenance model:
 
 ## Related
 
-- [prov-spec](https://github.com/mcp-tool-shop/prov-spec) - Provenance specification
-- [a11y-evidence-engine](https://github.com/mcp-tool-shop/a11y-evidence-engine) - CLI scanner
-- [a11y-assist](https://github.com/mcp-tool-shop/a11y-assist) - Fix advisor
-- [a11y-demo-site](https://github.com/mcp-tool-shop/a11y-demo-site) - Demo with CI workflows
+- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - Provenance specification
+- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - CLI scanner
+- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Fix advisor
+- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Demo with CI workflows
 
 ## License
 
