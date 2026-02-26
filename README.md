@@ -1,9 +1,21 @@
-# a11y-mcp-tools
+<p align="center">
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+</p>
 
-[![CI](https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml/badge.svg)](https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/a11y-mcp-tools/main/assets/logo-a11y-mcp-tools.png" alt="a11y-mcp-tools" width="400">
+</p>
 
-MCP (Model Context Protocol) tools for accessibility evidence capture and diagnosis.
+<p align="center">
+  <a href="https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://www.npmjs.com/package/@mcptoolshop/a11y-mcp-tools"><img src="https://img.shields.io/npm/v/@mcptoolshop/a11y-mcp-tools" alt="npm"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow" alt="MIT License"></a>
+  <a href="https://mcp-tool-shop-org.github.io/a11y-mcp-tools/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
+</p>
+
+**MCP tools for accessibility evidence capture and diagnosis.**
+
+---
 
 ## Tools
 
@@ -27,11 +39,15 @@ Run deterministic accessibility checks over evidence bundles.
 - SAFE-only fix guidance (intent patches, not direct writes)
 - Provenance verification
 
+---
+
 ## Installation
 
 ```bash
-npm install -g a11y-mcp-tools
+npm install -g @mcptoolshop/a11y-mcp-tools
 ```
+
+---
 
 ## Usage
 
@@ -66,65 +82,19 @@ a11y evidence --target page.html --dom-snapshot | a11y diagnose --fix
 a11y-mcp
 ```
 
-### MCP Envelope Format (v0.1)
+---
 
-Requests and responses use a standard envelope:
+## WCAG Rules (v0.1)
 
-**Request:**
-```json
-{
-  "mcp": {
-    "envelope": "mcp.envelope_v0_1",
-    "request_id": "req_01HR9Y6GQ7V8WQ0K8N9K",
-    "tool": "a11y.evidence",
-    "client": { "name": "a11y-cli", "version": "0.2.0" }
-  },
-  "input": {
-    "targets": [{ "kind": "file", "path": "html/index.html" }],
-    "capture": { "html": { "canonicalize": true }, "dom": { "snapshot": true } }
-  }
-}
-```
+| Rule | Finding ID | WCAG | Description |
+|------|-----------|------|-------------|
+| `lang` | `a11y.lang.missing` | 3.1.1 | Missing lang attribute on html element |
+| `alt` | `a11y.img.missing_alt` | 1.1.1 | Missing alt attribute on img element |
+| `button-name` | `a11y.button.missing_name` | 4.1.2 | Button without accessible name |
+| `link-name` | `a11y.link.missing_name` | 4.1.2 | Link without accessible name |
+| `label` | `a11y.input.missing_label` | 1.3.1 | Form input without label |
 
-**Response:**
-```json
-{
-  "mcp": {
-    "envelope": "mcp.envelope_v0_1",
-    "request_id": "req_01HR9Y6GQ7V8WQ0K8N9K",
-    "tool": "a11y.evidence",
-    "ok": true
-  },
-  "result": {
-    "bundle": { ... }
-  }
-}
-```
-
-**Error:**
-```json
-{
-  "mcp": {
-    "envelope": "mcp.envelope_v0_1",
-    "request_id": "req_01HR9Y6GQ7V8WQ0K8N9K",
-    "tool": "a11y.diagnose",
-    "ok": false
-  },
-  "error": {
-    "code": "PROVENANCE_VERIFICATION_FAILED",
-    "message": "Evidence digest mismatch for artifact:dom:index.",
-    "fix": "Re-run a11y.evidence to recapture evidence."
-  }
-}
-```
-
-## Schemas
-
-JSON Schemas are provided for validation:
-
-- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCP envelope format
-- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Evidence bundle format
-- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Diagnosis output format
+---
 
 ## Method ID Catalog (v0.1)
 
@@ -141,23 +111,17 @@ Stable method IDs for provenance tracking. See [PROV_METHODS_CATALOG.md](PROV_ME
 | `engine.extract.evidence.json_pointer_v0_1` | JSON Pointer evidence extraction |
 | `engine.extract.evidence.selector_v0_1` | CSS selector evidence extraction |
 
-## Shared Artifact Model
+---
 
-Both tools work with a shared artifact/provenance model:
+## Schemas
 
-- **Artifacts**: Captured content with digests and metadata
-- **Evidence Anchors**: Pointers back to artifact locations (JSON Pointer, selector, line span)
-- **Provenance**: prov-spec records documenting capture and analysis
+JSON Schemas are provided for validation:
 
-## WCAG Rules (v0.1)
+- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCP envelope format
+- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Evidence bundle format
+- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Diagnosis output format
 
-| Rule | Finding ID | WCAG | Description |
-|------|-----------|------|-------------|
-| `lang` | `a11y.lang.missing` | 3.1.1 | Missing lang attribute on html element |
-| `alt` | `a11y.img.missing_alt` | 1.1.1 | Missing alt attribute on img element |
-| `button-name` | `a11y.button.missing_name` | 4.1.2 | Button without accessible name |
-| `link-name` | `a11y.link.missing_name` | 4.1.2 | Link without accessible name |
-| `label` | `a11y.input.missing_label` | 1.3.1 | Form input without label |
+---
 
 ## Related
 
@@ -166,6 +130,8 @@ Both tools work with a shared artifact/provenance model:
 - [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Fix advisor
 - [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Demo with CI workflows
 
+---
+
 ## License
 
-MIT
+[MIT](LICENSE)

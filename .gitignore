@@ -2,3 +2,6 @@ node_modules/
 test/fixtures/
 *.log
 .DS_Store
+site/.astro/
+site/node_modules/
+site/dist/
