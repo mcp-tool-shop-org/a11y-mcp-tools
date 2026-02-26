@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/a11y-mcp-tools/main/assets/logo-a11y-mcp-tools.png" alt="a11y-mcp-tools" width="400">
+  <img src="https://raw.githubusercontent.com/mcp-tool-shop-org/brand/main/logos/a11y-mcp-tools/readme.png" alt="a11y-mcp-tools" width="400">
 </p>
 
 <p align="center">
