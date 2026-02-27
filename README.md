@@ -132,6 +132,26 @@ JSON Schemas are provided for validation:
 
 ---
 
+## Security & Data Scope
+
+- **Data accessed:** Reads HTML files from disk for evidence capture. Processes DOM snapshots for accessibility diagnosis.
+- **Data NOT accessed:** No network requests. No telemetry. No user data storage. No credentials or tokens.
+- **Permissions required:** Read access to target HTML files. Write access for evidence bundle output.
+
+## Scorecard
+
+| Gate | Status |
+|------|--------|
+| A. Security Baseline | PASS |
+| B. Error Handling | PASS |
+| C. Operator Docs | PASS |
+| D. Shipping Hygiene | PASS |
+| E. Identity | PASS |
+
 ## License
 
 [MIT](LICENSE)
+
+---
+
+Built by <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>
