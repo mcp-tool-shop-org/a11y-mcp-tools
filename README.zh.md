@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+  <a href="README.ja.md">日本語</a> | <a href="README.md">English</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 - 标准化 HTML 归一化
 - DOM 快照提取
 - SHA-256 完整性校验
-- provenance（来源）记录
+- provenance 记录
 
 ### `a11y.diagnose`
 
@@ -36,7 +36,7 @@
 **功能：**
 - WCAG 2.2 AA 规则检查
 - 基于证据的发现（JSON Pointer、CSS 选择器、行范围）
-- 仅提供 SAFE 修复建议（意图补丁，而非直接修改）
+- 仅提供 SAFE 修复建议（意图补丁，不直接写入）
 - provenance 验证
 
 ---
@@ -51,7 +51,7 @@ npm install -g @mcptoolshop/a11y-mcp-tools
 
 ## 使用方法
 
-### 命令行界面 (CLI) (推荐)
+### 命令行 (CLI) (推荐)
 
 ```bash
 # Capture evidence from HTML file
@@ -74,7 +74,7 @@ a11y evidence --target page.html --dom-snapshot | a11y diagnose --fix
 - `0` - 成功（未发现或未超过 `--fail-on` 的问题）
 - `2` - 发现问题（工具成功运行，但发现了一些问题）
 - `3` - 捕获/验证失败（输入错误或模式错误）
-- `4` - provenance 验证失败（校验和不匹配）
+- `4` - provenance 验证失败（摘要不匹配）
 
 ### 作为 MCP 服务器
 
@@ -86,12 +86,12 @@ a11y-mcp
 
 ## WCAG 规则 (v0.1)
 
-| Rule | 发现 ID | WCAG | 描述 |
-| ------ | ----------- | ------ | ------------- |
-| `lang` | `a11y.lang.missing` | 3.1.1 | html 元素缺少 lang 属性 |
+| 规则 | 发现 ID | WCAG | 描述 |
+|------|-----------|------|-------------|
+| `lang` | `a11y.lang.missing` | 3.1.1 | HTML 元素缺少 lang 属性 |
 | `alt` | `a11y.img.missing_alt` | 1.1.1 | img 元素缺少 alt 属性 |
-| `button-name` | `a11y.button.missing_name` | 4.1.2 | 按钮没有可访问的名称 |
-| `link-name` | `a11y.link.missing_name` | 4.1.2 | 链接没有可访问的名称 |
+| `button-name` | `a11y.button.missing_name` | 4.1.2 | 按钮缺少可访问的名称 |
+| `link-name` | `a11y.link.missing_name` | 4.1.2 | 链接缺少可访问的名称 |
 | `label` | `a11y.input.missing_label` | 1.3.1 | 表单输入缺少标签 |
 
 ---
@@ -101,11 +101,11 @@ a11y-mcp
 用于 provenance 跟踪的稳定方法 ID。有关完整文档，请参阅 [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md)。
 
 | 方法 ID | 描述 |
-| ----------- | ------------- |
-| `adapter.wrap.envelope_v0_1` | 封装在 MCP 封套中 |
+|-----------|-------------|
+| `adapter.wrap.envelope_v0_1` | 封装在 MCP 报文中 |
 | `adapter.provenance.record_v0_1` | 创建 provenance 记录 |
 | `adapter.integrity.sha256_v0_1` | SHA-256 完整性验证 |
-| `engine.capture.html_canonicalize_v0_1` | HTML 捕获，并进行归一化 |
+| `engine.capture.html_canonicalize_v0_1` | 带有归一化的 HTML 捕获 |
 | `engine.capture.dom_snapshot_v0_1` | DOM 快照提取 |
 | `engine.diagnose.wcag_rules_v0_1` | WCAG 规则评估 |
 | `engine.extract.evidence.json_pointer_v0_1` | JSON Pointer 证据提取 |
@@ -117,7 +117,7 @@ a11y-mcp
 
 提供 JSON 模式以进行验证：
 
-- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCP 封套格式
+- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCP 报文格式
 - [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - 证据包格式
 - [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - 诊断输出格式
 
@@ -127,11 +127,31 @@ a11y-mcp
 
 - [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - provenance 规范
 - [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - CLI 扫描器
-- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - 修复建议工具
-- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - 带有 CI 工作流的演示站点
+- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - 修复建议器
+- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - 带有 CI 工作流的演示
 
 ---
+
+## 安全与数据范围
+
+- **访问的数据：** 从磁盘读取 HTML 文件以进行证据捕获。处理 DOM 快照以进行辅助功能诊断。
+- **未访问的数据：** 无网络请求。无遥测。无用户数据存储。无凭证或 令牌。
+- **所需权限：** 访问目标 HTML 文件的读取权限。用于证据包输出的写入权限。
+
+## 评分卡
+
+| 门禁 | 状态 |
+|------|--------|
+| A. 安全基线 | 通过 |
+| B. 错误处理 | 通过 |
+| C. 操作文档 | 通过 |
+| D. 部署卫生 | 通过 |
+| E. 身份验证 | 通过 |
 
 ## 许可证
 
 [MIT](LICENSE)
+
+---
+
+由 <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a> 构建

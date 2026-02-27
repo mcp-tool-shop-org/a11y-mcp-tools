@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.md">English</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@ Effectue des vérifications d'accessibilité déterministes sur les ensembles de
 **Fonctionnalités :**
 - Vérification des règles WCAG 2.2 AA
 - Résultats liés aux preuves (pointeur JSON, sélecteur CSS, intervalles de lignes)
-- Suggestions de correction SAFE uniquement (correctifs d'intention, pas d'écritures directes)
+- Conseils de correction basés sur SAFE uniquement (correctifs d'intention, pas d'écritures directes)
 - Vérification de la provenance
 
 ---
@@ -71,7 +71,7 @@ a11y evidence --target page.html --dom-snapshot | a11y diagnose --fix
 ```
 
 **Codes de sortie (natifs pour l'intégration continue) :**
-- `0` - Succès (aucune anomalie détectée ou au-dessus de `--fail-on`)
+- `0` - Succès (aucune anomalie détectée ou au-dessus du seuil `--fail-on`)
 - `2` - Anomalies détectées (l'outil a réussi, mais des problèmes ont été trouvés)
 - `3` - Échec de la capture/de la validation (entrée incorrecte, erreur de schéma)
 - `4` - Échec de la vérification de la provenance (incohérence des sommes de contrôle)
@@ -86,8 +86,8 @@ a11y-mcp
 
 ## Règles WCAG (v0.1)
 
-| Rule | ID de l'anomalie | WCAG | Description |
-| ------ | ----------- | ------ | ------------- |
+| Règle | ID de l'anomalie | WCAG | Description |
+|------|-----------|------|-------------|
 | `lang` | `a11y.lang.missing` | 3.1.1 | Attribut "lang" manquant sur l'élément HTML |
 | `alt` | `a11y.img.missing_alt` | 1.1.1 | Attribut "alt" manquant sur l'élément img |
 | `button-name` | `a11y.button.missing_name` | 4.1.2 | Bouton sans nom accessible |
@@ -100,9 +100,9 @@ a11y-mcp
 
 ID de méthode stables pour le suivi de la provenance. Consultez [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) pour une documentation complète.
 
-| ID de la méthode | Description |
-| ----------- | ------------- |
-| `adapter.wrap.envelope_v0_1` | Encapsulation dans une enveloppe MCP |
+| ID de méthode | Description |
+|-----------|-------------|
+| `adapter.wrap.envelope_v0_1` | Encapsuler dans une enveloppe MCP |
 | `adapter.provenance.record_v0_1` | Création d'un enregistrement de provenance |
 | `adapter.integrity.sha256_v0_1` | Vérification de l'intégrité SHA-256 |
 | `engine.capture.html_canonicalize_v0_1` | Capture HTML avec canonisation |
@@ -119,7 +119,7 @@ Des schémas JSON sont fournis pour la validation :
 
 - [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - Format d'enveloppe MCP
 - [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Format de l'ensemble de preuves
-- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Format de la sortie du diagnostic
+- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Format de sortie du diagnostic
 
 ---
 
@@ -132,6 +132,26 @@ Des schémas JSON sont fournis pour la validation :
 
 ---
 
+## Sécurité et portée des données
+
+- **Données accessibles :** Lecture des fichiers HTML à partir du disque pour la capture des preuves. Traitement des captures d'écran du DOM pour le diagnostic de l'accessibilité.
+- **Données NON accessibles :** Aucune requête réseau. Aucune télémétrie. Aucun stockage de données utilisateur. Aucun identifiant ou jeton.
+- **Autorisations requises :** Accès en lecture aux fichiers HTML cibles. Accès en écriture pour la sortie de l'ensemble de preuves.
+
+## Tableau de bord
+
+| Portail | Statut |
+|------|--------|
+| A. Base de sécurité | PASSÉ |
+| B. Gestion des erreurs | PASSÉ |
+| C. Documentation pour les opérateurs | PASSÉ |
+| D. Hygiène de déploiement | PASSÉ |
+| E. Identité | PASSÉ |
+
 ## Licence
 
 [MIT](LICENSE)
+
+---
+
+Créé par <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>

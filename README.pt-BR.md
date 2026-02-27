@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.md">English</a>
 </p>
 
 <p align="center">
@@ -36,7 +36,7 @@ Executa verificações de acessibilidade determinísticas em pacotes de evidênc
 **Funcionalidades:**
 - Verificação de regras WCAG 2.2 AA
 - Resultados vinculados a evidências (JSON Pointer, seletor CSS, intervalos de linhas)
-- Orientações de correção baseadas em "SAFE" (patches de intenção, não modificações diretas)
+- Orientações de correção baseadas em SAFE (patches de intenção, não escritas diretas)
 - Verificação de procedência
 
 ---
@@ -86,8 +86,8 @@ a11y-mcp
 
 ## Regras WCAG (v0.1)
 
-| Rule | ID do Resultado | WCAG | Descrição |
-| ------ | ----------- | ------ | ------------- |
+| Regra | ID do Resultado | WCAG | Descrição |
+|------|-----------|------|-------------|
 | `lang` | `a11y.lang.missing` | 3.1.1 | Atributo "lang" ausente no elemento HTML |
 | `alt` | `a11y.img.missing_alt` | 1.1.1 | Atributo "alt" ausente no elemento "img" |
 | `button-name` | `a11y.button.missing_name` | 4.1.2 | Botão sem nome acessível |
@@ -101,7 +101,7 @@ a11y-mcp
 IDs de métodos estáveis para rastreamento de procedência. Consulte [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) para documentação completa.
 
 | ID do Método | Descrição |
-| ----------- | ------------- |
+|-----------|-------------|
 | `adapter.wrap.envelope_v0_1` | Envolver em envelope MCP |
 | `adapter.provenance.record_v0_1` | Criação de registro de procedência |
 | `adapter.integrity.sha256_v0_1` | Verificação de integridade SHA-256 |
@@ -109,7 +109,7 @@ IDs de métodos estáveis para rastreamento de procedência. Consulte [PROV_METH
 | `engine.capture.dom_snapshot_v0_1` | Extração de instantâneo do DOM |
 | `engine.diagnose.wcag_rules_v0_1` | Avaliação de regras WCAG |
 | `engine.extract.evidence.json_pointer_v0_1` | Extração de evidências JSON Pointer |
-| `engine.extract.evidence.selector_v0_1` | Extração de evidências CSS selector |
+| `engine.extract.evidence.selector_v0_1` | Extração de evidências de seletor CSS |
 
 ---
 
@@ -132,6 +132,26 @@ Esquemas JSON são fornecidos para validação:
 
 ---
 
+## Segurança e Escopo de Dados
+
+- **Dados acessados:** Lê arquivos HTML do disco para captura de evidências. Processa instantâneos do DOM para diagnóstico de acessibilidade.
+- **Dados NÃO acessados:** Sem requisições de rede. Sem telemetria. Sem armazenamento de dados do usuário. Sem credenciais ou tokens.
+- **Permissões necessárias:** Acesso de leitura aos arquivos HTML de destino. Acesso de escrita para a saída do pacote de evidências.
+
+## Painel de Controle
+
+| Gate | Status |
+|------|--------|
+| A. Baseline de Segurança | APROVADO |
+| B. Tratamento de Erros | APROVADO |
+| C. Documentação para Operadores | APROVADO |
+| D. Higiene de Implantação | APROVADO |
+| E. Identidade | APROVADO |
+
 ## Licença
 
 [MIT](LICENSE)
+
+---
+
+Criado por <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>

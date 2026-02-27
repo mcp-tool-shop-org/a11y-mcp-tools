@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
+  <a href="README.ja.md">日本語</a> | <a href="README.zh.md">中文</a> | <a href="README.md">English</a> | <a href="README.fr.md">Français</a> | <a href="README.hi.md">हिन्दी</a> | <a href="README.it.md">Italiano</a> | <a href="README.pt-BR.md">Português (BR)</a>
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@
   <a href="https://mcp-tool-shop-org.github.io/a11y-mcp-tools/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
 
-**Herramientas de MCP para la captura y el diagnóstico de evidencia de accesibilidad.**
+**Herramientas de MCP para la captura y diagnóstico de evidencia de accesibilidad.**
 
 ---
 
@@ -24,20 +24,20 @@
 Captura paquetes de evidencia con protección contra manipulaciones a partir de archivos HTML, registros de la línea de comandos u otras fuentes.
 
 **Capacidades:**
-- Normalización canónica de HTML
-- Extracción de instantáneas del DOM
-- Sumas de comprobación de integridad SHA-256
-- Registros de procedencia según la especificación prov
+- Normalización canónica de HTML.
+- Extracción de instantáneas del DOM.
+- Sumas de verificación SHA-256.
+- Registros de procedencia según la especificación prov.
 
 ### `a11y.diagnose`
 
-Realiza comprobaciones de accesibilidad deterministas sobre los paquetes de evidencia.
+Realiza comprobaciones deterministas de accesibilidad sobre los paquetes de evidencia.
 
 **Capacidades:**
-- Comprobación de reglas WCAG 2.2 AA
-- Resultados vinculados a la evidencia (puntero JSON, selector CSS, rangos de líneas)
-- Sugerencias de corrección solo con SAFE (parches de intención, no escrituras directas)
-- Verificación de la procedencia
+- Comprobación de reglas WCAG 2.2 AA.
+- Resultados vinculados a la evidencia (JSON Pointer, selector CSS, rangos de líneas).
+- Sugerencias de corrección basadas únicamente en SAFE (parches de intención, no escrituras directas).
+- Verificación de la procedencia.
 
 ---
 
@@ -51,7 +51,7 @@ npm install -g @mcptoolshop/a11y-mcp-tools
 
 ## Uso
 
-### Línea de comandos (CLI) (Recomendado)
+### Línea de comandos (recomendado)
 
 ```bash
 # Capture evidence from HTML file
@@ -71,12 +71,12 @@ a11y evidence --target page.html --dom-snapshot | a11y diagnose --fix
 ```
 
 **Códigos de salida (nativos de CI):**
-- `0` - Éxito (no se encontraron problemas o todos los problemas están por debajo de `--fail-on`)
-- `2` - Se encontraron problemas (la herramienta tuvo éxito, pero se encontraron problemas)
-- `3` - Fallo en la captura/validación (entrada incorrecta, error de esquema)
-- `4` - Fallo en la verificación de la procedencia (desajuste en la suma de comprobación)
+- `0` - Éxito (no se encontraron problemas o todos los problemas están por debajo de `--fail-on`).
+- `2` - Se encontraron problemas (la herramienta tuvo éxito, pero se encontraron problemas).
+- `3` - Fallo en la captura/validación (entrada incorrecta, error de esquema).
+- `4` - Fallo en la verificación de la procedencia (desajuste de la suma de verificación).
 
-### Como servidor MCP
+### Como servidor de MCP
 
 ```bash
 a11y-mcp
@@ -86,13 +86,13 @@ a11y-mcp
 
 ## Reglas WCAG (v0.1)
 
-| Rule | ID del hallazgo | WCAG | Descripción |
-| ------ | ----------- | ------ | ------------- |
-| `lang` | `a11y.lang.missing` | 3.1.1 | Atributo "lang" faltante en el elemento HTML |
-| `alt` | `a11y.img.missing_alt` | 1.1.1 | Atributo "alt" faltante en el elemento img |
-| `button-name` | `a11y.button.missing_name` | 4.1.2 | Botón sin nombre accesible |
-| `link-name` | `a11y.link.missing_name` | 4.1.2 | Enlace sin nombre accesible |
-| `label` | `a11y.input.missing_label` | 1.3.1 | Campo de formulario sin etiqueta |
+| Regla | ID del resultado | WCAG | Descripción |
+|------|-----------|------|-------------|
+| `lang` | `a11y.lang.missing` | 3.1.1 | Atributo "lang" faltante en el elemento HTML. |
+| `alt` | `a11y.img.missing_alt` | 1.1.1 | Atributo "alt" faltante en el elemento "img". |
+| `button-name` | `a11y.button.missing_name` | 4.1.2 | Botón sin nombre accesible. |
+| `link-name` | `a11y.link.missing_name` | 4.1.2 | Enlace sin nombre accesible. |
+| `label` | `a11y.input.missing_label` | 1.3.1 | Campo de formulario sin etiqueta. |
 
 ---
 
@@ -100,16 +100,16 @@ a11y-mcp
 
 ID de métodos estables para el seguimiento de la procedencia. Consulte [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) para obtener documentación completa.
 
-| ID del método | Descripción |
-| ----------- | ------------- |
-| `adapter.wrap.envelope_v0_1` | Envolver en un paquete MCP |
-| `adapter.provenance.record_v0_1` | Creación de registro de procedencia |
-| `adapter.integrity.sha256_v0_1` | Verificación de integridad SHA-256 |
-| `engine.capture.html_canonicalize_v0_1` | Captura de HTML con normalización |
-| `engine.capture.dom_snapshot_v0_1` | Extracción de instantáneas del DOM |
-| `engine.diagnose.wcag_rules_v0_1` | Evaluación de reglas WCAG |
-| `engine.extract.evidence.json_pointer_v0_1` | Extracción de evidencia con puntero JSON |
-| `engine.extract.evidence.selector_v0_1` | Extracción de evidencia con selector CSS |
+| ID de método | Descripción |
+|-----------|-------------|
+| `adapter.wrap.envelope_v0_1` | Envolver en un paquete MCP. |
+| `adapter.provenance.record_v0_1` | Creación de registro de procedencia. |
+| `adapter.integrity.sha256_v0_1` | Verificación de integridad SHA-256. |
+| `engine.capture.html_canonicalize_v0_1` | Captura de HTML con normalización. |
+| `engine.capture.dom_snapshot_v0_1` | Extracción de instantáneas del DOM. |
+| `engine.diagnose.wcag_rules_v0_1` | Evaluación de reglas WCAG. |
+| `engine.extract.evidence.json_pointer_v0_1` | Extracción de evidencia con JSON Pointer. |
+| `engine.extract.evidence.selector_v0_1` | Extracción de evidencia con selector CSS. |
 
 ---
 
@@ -117,21 +117,41 @@ ID de métodos estables para el seguimiento de la procedencia. Consulte [PROV_ME
 
 Se proporcionan esquemas JSON para la validación:
 
-- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - Formato de paquete MCP
-- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Formato de paquete de evidencia
-- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Formato de salida de diagnóstico
+- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - Formato de paquete MCP.
+- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Formato de paquete de evidencia.
+- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Formato de salida de diagnóstico.
 
 ---
 
 ## Relacionado
 
-- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - Especificación de procedencia
-- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - Escáner de línea de comandos
-- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Asesor de correcciones
-- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Demostración con flujos de trabajo de CI
+- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - Especificación de procedencia.
+- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - Escáner de línea de comandos.
+- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Asesor de correcciones.
+- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Demostración con flujos de trabajo de CI.
 
 ---
+
+## Seguridad y alcance de datos
+
+- **Datos accedidos:** Lee archivos HTML del disco para la captura de evidencia. Procesa instantáneas del DOM para el diagnóstico de accesibilidad.
+- **Datos NO accedidos:** No hay solicitudes de red. No hay telemetría. No hay almacenamiento de datos del usuario. No hay credenciales ni tokens.
+- **Permisos requeridos:** Acceso de lectura a los archivos HTML de destino. Acceso de escritura para la salida del paquete de evidencia.
+
+## Cuadro de evaluación
+
+| Puerta | Estado |
+|------|--------|
+| A. Línea de base de seguridad | PASADO |
+| B. Manejo de errores | PASADO |
+| C. Documentación para operadores | PASADO |
+| D. Higiene de implementación | PASADO |
+| E. Identidad | PASADO |
 
 ## Licencia
 
 [MIT](LICENSE)
+
+---
+
+Creado por <a href="https://mcp-tool-shop.github.io/">MCP Tool Shop</a>
