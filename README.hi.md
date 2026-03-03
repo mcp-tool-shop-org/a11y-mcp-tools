@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/a11y-mcp-tools/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <a href="https://www.npmjs.com/package/@mcptoolshop/a11y-mcp-tools"><img src="https://img.shields.io/npm/v/@mcptoolshop/a11y-mcp-tools" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/@accessibility-suite/mcp-tools"><img src="https://img.shields.io/npm/v/@accessibility-suite/mcp-tools" alt="npm"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow" alt="MIT License"></a>
   <a href="https://mcp-tool-shop-org.github.io/a11y-mcp-tools/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page"></a>
 </p>
@@ -44,7 +44,7 @@ HTML फ़ाइलों, CLI लॉग या अन्य इनपुट �
 ## स्थापना
 
 ```bash
-npm install -g @mcptoolshop/a11y-mcp-tools
+npm install -g @accessibility-suite/mcp-tools
 ```
 
 ---

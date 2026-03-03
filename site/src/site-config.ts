@@ -6,7 +6,7 @@ export const config: SiteConfig = {
   logoBadge: 'A11Y',
   brandName: 'a11y-mcp-tools',
   repoUrl: 'https://github.com/mcp-tool-shop-org/a11y-mcp-tools',
-  npmUrl: 'https://www.npmjs.com/package/@mcptoolshop/a11y-mcp-tools',
+  npmUrl: 'https://www.npmjs.com/package/@accessibility-suite/mcp-tools',
   footerText: 'MIT Licensed \u2014 built by <a href="https://github.com/mcp-tool-shop-org" style="color:var(--color-muted);text-decoration:underline">mcp-tool-shop-org</a>',
 
   hero: {
@@ -17,7 +17,7 @@ export const config: SiteConfig = {
     primaryCta: { href: '#quick-start', label: 'Get started' },
     secondaryCta: { href: '#features', label: 'Learn more' },
     previews: [
-      { label: 'Install', code: 'npm install -g @mcptoolshop/a11y-mcp-tools' },
+      { label: 'Install', code: 'npm install -g @accessibility-suite/mcp-tools' },
       { label: 'Capture', code: 'a11y evidence --target index.html --dom-snapshot' },
       { label: 'Diagnose', code: 'a11y diagnose --bundle evidence.json --fix' },
     ],
@@ -45,7 +45,7 @@ export const config: SiteConfig = {
       cards: [
         {
           title: 'Capture & diagnose',
-          code: 'npm install -g @mcptoolshop/a11y-mcp-tools\n\n# Capture evidence from HTML\na11y evidence --target index.html --dom-snapshot --out evidence.json\n\n# Diagnose with fix suggestions\na11y diagnose --bundle evidence.json --fix\n\n# One-liner pipeline\na11y evidence --target page.html --dom-snapshot | a11y diagnose --fix',
+          code: 'npm install -g @accessibility-suite/mcp-tools\n\n# Capture evidence from HTML\na11y evidence --target index.html --dom-snapshot --out evidence.json\n\n# Diagnose with fix suggestions\na11y diagnose --bundle evidence.json --fix\n\n# One-liner pipeline\na11y evidence --target page.html --dom-snapshot | a11y diagnose --fix',
         },
         {
           title: 'With provenance',

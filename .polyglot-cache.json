@@ -1,0 +1,1475 @@
+{
+  "version": 1,
+  "entries": {
+    "4b738f6bbf9d77b4": {
+      "translation": "**MCPツール：アクセシビリティに関する証拠の収集と診断**",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "3996cf4ef865962c": {
+      "translation": "ツール",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "4bde68c68e7626a0": {
+      "translation": "`a11y.evidence`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "57ebcf3908c8eb46": {
+      "translation": "HTMLファイル、CLIログ、またはその他の入力から、改ざん防止機能付きの証拠データを収集します。",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "76547f849b8361bb": {
+      "translation": "**機能：**\n- 標準HTMLの正規化\n- DOMスナップショットの抽出\n- SHA-256による整合性チェック\n- プロヴェナンスレコード（prov-spec準拠）",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "941dade8709daabe": {
+      "translation": "`a11y.diagnose`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "e2c44e3f43620400": {
+      "translation": "収集された証拠データに対して、アクセシビリティチェックを実行します。",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "92a2553a5942b6bf": {
+      "translation": "**機能：**\n- WCAG 2.2 AAのルールチェック\n- 証拠データに基づいた問題点の特定（JSON Pointer、CSSセレクタ、行範囲）\n- SAFE（Secure and Accessible Fix Environment）に準拠した修正提案（意図された修正パッチ、直接的なコード変更は行わない）\n- プロヴェナンスの検証",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "d88005a6cdf9c925": {
+      "translation": "インストール",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "5a1bcd947bd94196": {
+      "translation": "使用方法",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "afc5917aa1b15261": {
+      "translation": "CLI（推奨）",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "42047cc4274398c4": {
+      "translation": "**終了コード（CI環境向け）：**\n- `0` - 成功（`--fail-on`以下の問題点なし）\n- `2` - 問題点の存在（ツールは成功したが、問題が見つかった）\n- `3` - 収集/検証の失敗（不正な入力、スキーマエラー）\n- `4` - プロヴェナンスの検証失敗（ダイジェストの不一致）",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "dda33843359b8df2": {
+      "translation": "MCPサーバーとして",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "cd0acdeb022642dd": {
+      "translation": "WCAGルール（v0.1）",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "5e1f543ff572fcf3": {
+      "translation": "問題点ID",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "67731479bd4e364b": {
+      "translation": "説明",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "69e70b451ff65bf9": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "5267a4e52ef1849b": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "651826877e732548": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "19bb0b21c2b80443": {
+      "translation": "HTML要素にlang属性が設定されていない",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "7a247d2afcf90b30": {
+      "translation": "img要素にalt属性が設定されていない",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "f234fcc8a57562e3": {
+      "translation": "アクセシブルな名前を持たないボタン",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "4beb1dd5fe76bc28": {
+      "translation": "アクセシブルな名前を持たないリンク",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "42d3b13ec751644e": {
+      "translation": "ラベルのないフォーム入力",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "e21490d9504712da": {
+      "translation": "メソッドIDカタログ（v0.1）",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "a62670b1baf04839": {
+      "translation": "プロヴェナンス追跡のための安定したメソッドID。詳細については、[PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md)を参照してください。",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "48a227053134b445": {
+      "translation": "メソッドID",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "d6792126d0ada18a": {
+      "translation": "MCPエンベロープでラップ",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "a6c2276b1d7aaceb": {
+      "translation": "プロヴェナンスレコードの作成",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "6326d4020bf99aa6": {
+      "translation": "SHA-256による整合性検証",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "5f6b3826424c6693": {
+      "translation": "正規化されたHTMLの収集",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "263ca2ff87f9360f": {
+      "translation": "DOMスナップショットの抽出",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "10e93cc1d26ea1c5": {
+      "translation": "WCAGルールの評価",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "5041bd3592ee5985": {
+      "translation": "JSON Pointerによる証拠データの抽出",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "cf30478e54345472": {
+      "translation": "CSSセレクタによる証拠データの抽出",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "e51cdc6a838b60f3": {
+      "translation": "スキーマ",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "30bd7e6410a1683d": {
+      "translation": "検証用のJSONスキーマを提供しています。",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "659a59d74316d6a4": {
+      "translation": "- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCPエンベロープの形式\n- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - 証拠データの形式\n- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - 診断結果の形式",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "1eb042d64621214a": {
+      "translation": "関連",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "3040a5d34fb92c1d": {
+      "translation": "- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - プロヴェナンス仕様\n- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - CLIスキャナ\n- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - 修正アドバイザー\n- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - CIワークフローを使用したデモサイト",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "08ea9dfbe36d981b": {
+      "translation": "ライセンス",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "5e7c5653fc3efae7": {
+      "translation": "[MIT](LICENSE)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087141358
+    },
+    "707109990d68f450": {
+      "translation": "**MCP 工具，用于辅助功能证据的捕获和诊断。**",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "bc3bcb5158c975f9": {
+      "translation": "工具",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "f3b0e95b2cca5258": {
+      "translation": "`a11y.evidence`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "73834031d7397ca7": {
+      "translation": "从 HTML 文件、CLI 日志或其他输入中捕获具有防篡改功能的证据包。",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "7ae028b5b18714f2": {
+      "translation": "**功能：**\n- 标准化 HTML 归一化\n- DOM 快照提取\n- SHA-256 完整性校验\n- provenance（来源）记录",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "a6e9a5ca0418a665": {
+      "translation": "`a11y.diagnose`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "0a3aea131e58bbef": {
+      "translation": "对证据包进行确定性的辅助功能检查。",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "ee634ad370bf32cf": {
+      "translation": "**功能：**\n- WCAG 2.2 AA 规则检查\n- 基于证据的发现（JSON Pointer、CSS 选择器、行范围）\n- 仅提供 SAFE 修复建议（意图补丁，而非直接修改）\n- provenance 验证",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "108c3bdaeaac02ca": {
+      "translation": "安装",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "0701e0fdda9d1418": {
+      "translation": "使用方法",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "55855f694987de1a": {
+      "translation": "命令行界面 (CLI) (推荐)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "8179bbfc035e0106": {
+      "translation": "**退出码 (适用于 CI 环境)：**\n- `0` - 成功（未发现或未超过 `--fail-on` 的问题）\n- `2` - 发现问题（工具成功运行，但发现了一些问题）\n- `3` - 捕获/验证失败（输入错误或模式错误）\n- `4` - provenance 验证失败（校验和不匹配）",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "7b70f445d0805acd": {
+      "translation": "作为 MCP 服务器",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "9bc54ec3d97573a9": {
+      "translation": "WCAG 规则 (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "e566924160dd8541": {
+      "translation": "发现 ID",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "601d6e570e22e932": {
+      "translation": "描述",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "7b7596c3d1d0c899": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "10198921144da1d7": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "dd5b28ff24f8cbdb": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "fc0e326cdc898f42": {
+      "translation": "html 元素缺少 lang 属性",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "150683eb6de22c34": {
+      "translation": "img 元素缺少 alt 属性",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "ad72682b010fca5e": {
+      "translation": "按钮没有可访问的名称",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "e3b9bd59c76e5cdf": {
+      "translation": "链接没有可访问的名称",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "39e61e4430f84d58": {
+      "translation": "表单输入缺少标签",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "d5b74d8f3b47657e": {
+      "translation": "方法 ID 目录 (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "260c610a67c2707a": {
+      "translation": "用于 provenance 跟踪的稳定方法 ID。有关完整文档，请参阅 [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md)。",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "a3cdfdc666177c93": {
+      "translation": "方法 ID",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "1345f313ec61b681": {
+      "translation": "封装在 MCP 封套中",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "e54189c6bf4b792d": {
+      "translation": "创建 provenance 记录",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "573bbfb4daecf95d": {
+      "translation": "SHA-256 完整性验证",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "9ea46a3ca9e901ec": {
+      "translation": "HTML 捕获，并进行归一化",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "7f349dfea5d95b19": {
+      "translation": "DOM 快照提取",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "ed942afa19ffa0eb": {
+      "translation": "WCAG 规则评估",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "6cf3216d68041c23": {
+      "translation": "JSON Pointer 证据提取",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "a746c89f609c86da": {
+      "translation": "CSS 选择器证据提取",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "7096b4a18cdbcfc4": {
+      "translation": "模式",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "b4f091972711b619": {
+      "translation": "提供 JSON 模式以进行验证：",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "733c7d06804bd6bf": {
+      "translation": "- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCP 封套格式\n- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - 证据包格式\n- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - 诊断输出格式",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "e1087cb5842c831a": {
+      "translation": "相关",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "95a577c04cca51e1": {
+      "translation": "- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - provenance 规范\n- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - CLI 扫描器\n- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - 修复建议工具\n- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - 带有 CI 工作流的演示站点",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "1fb815b9a436fadb": {
+      "translation": "许可证",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "892c2aa834c19cc2": {
+      "translation": "[MIT](LICENSE)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087166256
+    },
+    "e0798888103147c8": {
+      "translation": "**Herramientas de MCP para la captura y el diagnóstico de evidencia de accesibilidad.**",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "c252abd238fa1601": {
+      "translation": "Herramientas",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "a84baa667037776e": {
+      "translation": "`a11y.evidence`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "2e2f27e9a090336a": {
+      "translation": "Captura paquetes de evidencia con protección contra manipulaciones a partir de archivos HTML, registros de la línea de comandos u otras fuentes.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "3b7112afa2ef6005": {
+      "translation": "**Capacidades:**\n- Normalización canónica de HTML\n- Extracción de instantáneas del DOM\n- Sumas de comprobación de integridad SHA-256\n- Registros de procedencia según la especificación prov",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "c826907cca91a8f1": {
+      "translation": "`a11y.diagnose`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "2e17b68bba412bd0": {
+      "translation": "Realiza comprobaciones de accesibilidad deterministas sobre los paquetes de evidencia.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "1e7fc5cd5ba02b2d": {
+      "translation": "**Capacidades:**\n- Comprobación de reglas WCAG 2.2 AA\n- Resultados vinculados a la evidencia (puntero JSON, selector CSS, rangos de líneas)\n- Sugerencias de corrección solo con SAFE (parches de intención, no escrituras directas)\n- Verificación de la procedencia",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "c9f8b84d688aa64b": {
+      "translation": "Instalación",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "ef34faaf2d434dc4": {
+      "translation": "Uso",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "04a9176750a10ed8": {
+      "translation": "Línea de comandos (CLI) (Recomendado)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "e2354b967f6c4688": {
+      "translation": "**Códigos de salida (nativos de CI):**\n- `0` - Éxito (no se encontraron problemas o todos los problemas están por debajo de `--fail-on`)\n- `2` - Se encontraron problemas (la herramienta tuvo éxito, pero se encontraron problemas)\n- `3` - Fallo en la captura/validación (entrada incorrecta, error de esquema)\n- `4` - Fallo en la verificación de la procedencia (desajuste en la suma de comprobación)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "7e41c244c47b4b0a": {
+      "translation": "Como servidor MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "93333324c55b962a": {
+      "translation": "Reglas WCAG (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "6f98e5de7ab51db0": {
+      "translation": "ID del hallazgo",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "a0102622d03d4c0f": {
+      "translation": "Descripción",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "4110d0f8faecdeab": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "8d960fb67d9cab35": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "184e6ce2c9237895": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "6795b61cc380d178": {
+      "translation": "Atributo \"lang\" faltante en el elemento HTML",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "deef532960f21a20": {
+      "translation": "Atributo \"alt\" faltante en el elemento img",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "f0f67f39666aa46c": {
+      "translation": "Botón sin nombre accesible",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "abd685bb95877e48": {
+      "translation": "Enlace sin nombre accesible",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "baa2a4cf23a8484d": {
+      "translation": "Campo de formulario sin etiqueta",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "3f167133816a3797": {
+      "translation": "Catálogo de ID de métodos (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "9ab5b04dbb524ad0": {
+      "translation": "ID de métodos estables para el seguimiento de la procedencia. Consulte [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) para obtener documentación completa.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "9e1f2047857bd590": {
+      "translation": "ID del método",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "9529aa84cfe959b0": {
+      "translation": "Envolver en un paquete MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "45a569eb3a36e7a3": {
+      "translation": "Creación de registro de procedencia",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "ab129d1e1606e421": {
+      "translation": "Verificación de integridad SHA-256",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "2f40ded4970a2a4a": {
+      "translation": "Captura de HTML con normalización",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "701052f39828c464": {
+      "translation": "Extracción de instantáneas del DOM",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "dec4f44e5f191b7c": {
+      "translation": "Evaluación de reglas WCAG",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "af979b64d2951400": {
+      "translation": "Extracción de evidencia con puntero JSON",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "581ee7b12e34d77f": {
+      "translation": "Extracción de evidencia con selector CSS",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "f82567613cda8d08": {
+      "translation": "Esquemas",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "57ee3728f792c6c4": {
+      "translation": "Se proporcionan esquemas JSON para la validación:",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "671c365bdf985b9c": {
+      "translation": "- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - Formato de paquete MCP\n- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Formato de paquete de evidencia\n- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Formato de salida de diagnóstico",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "7427f620e7051d56": {
+      "translation": "Relacionado",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "8f726f1f8cea8ea8": {
+      "translation": "- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - Especificación de procedencia\n- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - Escáner de línea de comandos\n- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Asesor de correcciones\n- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Demostración con flujos de trabajo de CI",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "9572f74b6d3f62b1": {
+      "translation": "Licencia",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "e4731ea7699353e4": {
+      "translation": "[MIT](LICENSE)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087193631
+    },
+    "2086126a5bd75db1": {
+      "translation": "**Outils MCP pour la capture et le diagnostic des éléments d'accessibilité.**",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221627
+    },
+    "4fc8f270a733bfd8": {
+      "translation": "Outils",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221627
+    },
+    "400914f4584c7367": {
+      "translation": "`a11y.evidence`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221627
+    },
+    "b075fd5a31fe342c": {
+      "translation": "Capture des ensembles de preuves inviolables à partir de fichiers HTML, de journaux de la ligne de commande ou d'autres sources.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221627
+    },
+    "41bd2422c9429440": {
+      "translation": "**Fonctionnalités :**\n- Normalisation HTML canonique\n- Extraction de captures d'écran du DOM\n- Sommes de contrôle d'intégrité SHA-256\n- Enregistrements de provenance selon la spécification PROV",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "1477f749d1e19f81": {
+      "translation": "`a11y.diagnose`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "31a06e4e90a298e0": {
+      "translation": "Effectue des vérifications d'accessibilité déterministes sur les ensembles de preuves.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "c8ca58a49b8f47af": {
+      "translation": "**Fonctionnalités :**\n- Vérification des règles WCAG 2.2 AA\n- Résultats liés aux preuves (pointeur JSON, sélecteur CSS, intervalles de lignes)\n- Suggestions de correction SAFE uniquement (correctifs d'intention, pas d'écritures directes)\n- Vérification de la provenance",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "4077bbda21e83042": {
+      "translation": "Installation",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "35b366dd8551138a": {
+      "translation": "Utilisation",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "a60359354cfb4e93": {
+      "translation": "Ligne de commande (recommandé)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "cc40a7ec4ad13a6d": {
+      "translation": "**Codes de sortie (natifs pour l'intégration continue) :**\n- `0` - Succès (aucune anomalie détectée ou au-dessus de `--fail-on`)\n- `2` - Anomalies détectées (l'outil a réussi, mais des problèmes ont été trouvés)\n- `3` - Échec de la capture/de la validation (entrée incorrecte, erreur de schéma)\n- `4` - Échec de la vérification de la provenance (incohérence des sommes de contrôle)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "020ca539208d54ed": {
+      "translation": "En tant que serveur MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "48b70f52d95ef0d0": {
+      "translation": "Règles WCAG (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "2d5e8dc7d75412e6": {
+      "translation": "ID de l'anomalie",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "9a51c5b4f05710c0": {
+      "translation": "Description",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "86d5118e773cafab": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "d342ebe446ad84bf": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "42738f280dbf39b2": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "070d98ab7297b214": {
+      "translation": "Attribut \"lang\" manquant sur l'élément HTML",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "5bb64a0a5847379e": {
+      "translation": "Attribut \"alt\" manquant sur l'élément img",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "e679e504aa8e0f1a": {
+      "translation": "Bouton sans nom accessible",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "cf9cb93ebadaedf0": {
+      "translation": "Lien sans nom accessible",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "dc8d13f86a40b1d3": {
+      "translation": "Champ de formulaire sans étiquette",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "295b7036600e13ce": {
+      "translation": "Catalogue des ID de méthode (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "f457cba36bb680cd": {
+      "translation": "ID de méthode stables pour le suivi de la provenance. Consultez [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) pour une documentation complète.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "dea9badc2b96d663": {
+      "translation": "ID de la méthode",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "acbdb3b47c6ff1ed": {
+      "translation": "Encapsulation dans une enveloppe MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "cf4fec060c4f99e5": {
+      "translation": "Création d'un enregistrement de provenance",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "ae64794409078d8e": {
+      "translation": "Vérification de l'intégrité SHA-256",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "2e83d0d872db8c4e": {
+      "translation": "Capture HTML avec canonisation",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "f8d8231ffd5ba58b": {
+      "translation": "Extraction de captures d'écran du DOM",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "aebc8f90bb81ecc7": {
+      "translation": "Évaluation des règles WCAG",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "3b9fe2644f582b68": {
+      "translation": "Extraction de preuves par pointeur JSON",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "40d2507997bccd4d": {
+      "translation": "Extraction de preuves par sélecteur CSS",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "b4ca25fc072f0fd6": {
+      "translation": "Schémas",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "ad1dae4638e45f0a": {
+      "translation": "Des schémas JSON sont fournis pour la validation :",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "a204f0f26cc81463": {
+      "translation": "- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - Format d'enveloppe MCP\n- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Format de l'ensemble de preuves\n- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Format de la sortie du diagnostic",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "cc69b11148f6ac8d": {
+      "translation": "Liés",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "4fc1714dfc4afa56": {
+      "translation": "- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - Spécification de la provenance\n- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - Scanner en ligne de commande\n- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Conseiller de correction\n- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Démonstration avec des flux de travail d'intégration continue",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "0174ffc9d6992c72": {
+      "translation": "Licence",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "c19c2b7dfc530297": {
+      "translation": "[MIT](LICENSE)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087221628
+    },
+    "5651866bdecae0ca": {
+      "translation": "**MCP उपकरण सुलभता के प्रमाणों को कैप्चर करने और निदान करने के लिए।**",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "28541b6f0a65b173": {
+      "translation": "उपकरण",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "ab221703ca6136d1": {
+      "translation": "`a11y.evidence`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "5493d4a4b12f4cdc": {
+      "translation": "HTML फ़ाइलों, CLI लॉग या अन्य इनपुट से छेड़छाड़-रोधी प्रमाणों के बंडलों को कैप्चर करें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "8b11c55529d3a7e0": {
+      "translation": "**क्षमताएं:**\n- मानक HTML सामान्यीकरण\n- DOM स्नैपशॉट निष्कर्षण\n- SHA-256 अखंडता डाइजेस्ट\n- प्रामाणिकता रिकॉर्ड",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "83b4230fe1e78d97": {
+      "translation": "`a11y.diagnose`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "46e2ab7697d90329": {
+      "translation": "प्रमाण बंडलों पर नियतात्मक सुलभता जांच चलाएं।",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "f23ae2a0bdcd7416": {
+      "translation": "**क्षमताएं:**\n- WCAG 2.2 AA नियम जांच\n- प्रमाण-आधारित निष्कर्ष (JSON पॉइंटर, CSS चयनकर्ता, लाइन स्पैन)\n- केवल SAFE-आधारित सुधार मार्गदर्शन (इरादे वाले पैच, प्रत्यक्ष लेखन नहीं)\n- प्रामाणिकता सत्यापन",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "ed383afd27175535": {
+      "translation": "स्थापना",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "98a2f8cba1b36eff": {
+      "translation": "उपयोग",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "83f37718f0f0a205": {
+      "translation": "CLI (अनुशंसित)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "f67057812a05f1cd": {
+      "translation": "**एग्जिट कोड (CI-नेटिव):**\n- `0` - सफलता (कोई निष्कर्ष नहीं / `--fail-on` से ऊपर)\n- `2` - निष्कर्ष मौजूद हैं (उपकरण सफल रहा, लेकिन समस्याएं पाई गईं)\n- `3` - कैप्चर/सत्यापन विफलता (खराब इनपुट, स्कीमा त्रुटि)\n- `4` - प्रामाणिकता सत्यापन विफल (डाइजेस्ट मिसमैच)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "7666e16fb5840d49": {
+      "translation": "MCP सर्वर के रूप में",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "0660436a66fd4543": {
+      "translation": "WCAG नियम (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "7b0a013c5098aa11": {
+      "translation": "निष्कर्ष आईडी",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "b8423b5b4842cbda": {
+      "translation": "विवरण",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "1cb2d43271f2ec1d": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "03eb21bf393bcd87": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "bc35e1f9228e8622": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "8603c090b423fd67": {
+      "translation": "HTML तत्व पर 'lang' विशेषता गायब है",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "6cb1fe5d5dfd918d": {
+      "translation": "img तत्व पर 'alt' विशेषता गायब है",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "4e38c49776135827": {
+      "translation": "पहुंच योग्य नाम के बिना बटन",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "8b638d5724b0fc44": {
+      "translation": "पहुंच योग्य नाम के बिना लिंक",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "8c4139a00fb0b625": {
+      "translation": "लेबल के बिना फॉर्म इनपुट",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "e7a7132f119f129f": {
+      "translation": "विधि आईडी कैटलॉग (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "6289ded6b710f249": {
+      "translation": "प्रामाणिकता ट्रैकिंग के लिए स्थिर विधि आईडी। पूर्ण दस्तावेज़ के लिए [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) देखें।",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "52750ab05178e7e5": {
+      "translation": "विधि आईडी",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "7670d0e5486d7e34": {
+      "translation": "MCP लिफाफे में लपेटें",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "dce409e46f176d1b": {
+      "translation": "प्रामाणिकता रिकॉर्ड निर्माण",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "103e1e2f38ce6043": {
+      "translation": "SHA-256 अखंडता सत्यापन",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "04ae63001ee66deb": {
+      "translation": "मानककरण के साथ HTML कैप्चर",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "950a5d5458da4c8d": {
+      "translation": "DOM स्नैपशॉट निष्कर्षण",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "a37527a77c37cc45": {
+      "translation": "WCAG नियम मूल्यांकन",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "bc9f419f84ac5e2c": {
+      "translation": "JSON पॉइंटर प्रमाण निष्कर्षण",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "2c25b24a90fc0c41": {
+      "translation": "CSS चयनकर्ता प्रमाण निष्कर्षण",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "3e858659f0ea9ee1": {
+      "translation": "स्कीमा",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "c0eeddc2464f377f": {
+      "translation": "सत्यापन के लिए JSON स्कीमा प्रदान किए गए हैं:",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "11d9583eed891f57": {
+      "translation": "- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - MCP लिफाफे का प्रारूप\n- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - प्रमाण बंडल का प्रारूप\n- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - निदान आउटपुट प्रारूप",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "198202c8da4b38a1": {
+      "translation": "संबंधित",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "305eb2dd9e620452": {
+      "translation": "- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - प्रामाणिकता विनिर्देश\n- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - CLI स्कैनर\n- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - सुधार सलाहकार\n- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - CI वर्कफ़्लो के साथ डेमो",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "cfbc372f8058f151": {
+      "translation": "लाइसेंस",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "69121a20c478d6f4": {
+      "translation": "[MIT](LICENSE)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087248128
+    },
+    "b4ae7ddaeb89d4e6": {
+      "translation": "**Strumenti MCP per la raccolta e la diagnosi di elementi di accessibilità.**",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "92453500769ad537": {
+      "translation": "Strumenti",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "d753507a7aa30210": {
+      "translation": "`a11y.evidence`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "6665f6fbb6aa033c": {
+      "translation": "Acquisisce pacchetti di dati (evidence) immutabili da file HTML, log della riga di comando o altre fonti.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "8ac8d1914fead9a5": {
+      "translation": "**Funzionalità:**\n- Normalizzazione HTML canonica\n- Estrazione di snapshot del DOM\n- Calcolo degli hash di integrità SHA-256\n- Registri di provenienza conformi allo standard prov-spec",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "fdbed66b7a1a7b96": {
+      "translation": "`a11y.diagnose`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "05606dc097827db2": {
+      "translation": "Esegue controlli di accessibilità deterministici sui pacchetti di dati.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "81d4a899778e2395": {
+      "translation": "**Funzionalità:**\n- Verifica delle regole WCAG 2.2 AA\n- Risultati (findings) ancorati ai dati (JSON Pointer, selettore CSS, intervalli di riga)\n- Suggerimenti per la correzione basati su modifiche \"SAFE\" (patch di intento, non scritture dirette)\n- Verifica della provenienza",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "7b0c73c0f5463dff": {
+      "translation": "Installazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "dce66a0db971cc12": {
+      "translation": "Utilizzo",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "15ee17aa30c2ebdd": {
+      "translation": "Riga di comando (CLI) (Consigliato)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "d3408b67acd74ec4": {
+      "translation": "**Codici di uscita (compatibili con CI):**\n- `0` - Successo (nessun risultato trovato o al di sopra di `--fail-on`)\n- `2` - Risultati trovati (lo strumento ha avuto successo, ma sono stati rilevati problemi)\n- `3` - Errore di acquisizione/validazione (input non valido, errore di schema)\n- `4` - Verifica della provenienza fallita (mancanza di corrispondenza dell'hash)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "af6b217cd6d037e4": {
+      "translation": "Come server MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "08d569e64ae3e6a8": {
+      "translation": "Regole WCAG (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "2b7417a9da9ebd24": {
+      "translation": "ID del risultato",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "3af38881e7f28db0": {
+      "translation": "Descrizione",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "a8e2cbb75c81ee97": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "b7dd8da33d76c15e": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "5acc6809afb159f0": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "7eb3460c63cf7a4a": {
+      "translation": "Attributo \"lang\" mancante nell'elemento HTML",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "e4dca62c42e13656": {
+      "translation": "Attributo \"alt\" mancante nell'elemento \"img\"",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "782ea7a61f9a7334": {
+      "translation": "Pulsante senza nome accessibile",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "6ef11b448e64ebaf": {
+      "translation": "Link senza nome accessibile",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "04d31b714d782837": {
+      "translation": "Input di un modulo senza etichetta",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "49350453da1e7365": {
+      "translation": "Catalogo degli ID dei metodi (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "77090f7f2d7ee82c": {
+      "translation": "ID dei metodi stabili per il tracciamento della provenienza. Consultare [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) per la documentazione completa.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "8710117b9094cd56": {
+      "translation": "ID del metodo",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "0f87c66984ae3277": {
+      "translation": "Inclusione in un involucro MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "b14ee9df65a799e0": {
+      "translation": "Creazione di un record di provenienza",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "a3aff4ba37911b65": {
+      "translation": "Verifica dell'integrità SHA-256",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "6bde834d6464185f": {
+      "translation": "Acquisizione di HTML con canonizzazione",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "759e95d725987f46": {
+      "translation": "Estrazione di snapshot del DOM",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "b4e9e8d2fa936186": {
+      "translation": "Valutazione delle regole WCAG",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "4b4064d7d41b8165": {
+      "translation": "Estrazione di evidenze tramite JSON Pointer",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "998152aa50addc57": {
+      "translation": "Estrazione di evidenze tramite selettore CSS",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "4c34683afb1e0077": {
+      "translation": "Schemi",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "bedda4d4e40da1fb": {
+      "translation": "Sono forniti schemi JSON per la validazione:",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "19fa2cfcd324a61a": {
+      "translation": "- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - Formato dell'involucro MCP\n- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Formato del pacchetto di dati\n- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Formato dell'output della diagnosi",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "5b40fe1c944f2442": {
+      "translation": "Correlati",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "40d9bd20980fe31b": {
+      "translation": "- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - Specifiche di provenienza\n- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - Scanner della riga di comando\n- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Consigliatore per la correzione\n- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Demo con flussi di lavoro CI",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "0870aa1dcfea97cc": {
+      "translation": "Licenza",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "c87c0c0fca261018": {
+      "translation": "[MIT](LICENSE)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087276491
+    },
+    "8b64cb4840e6cec1": {
+      "translation": "**Ferramentas MCP para captura e diagnóstico de evidências de acessibilidade.**",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "49c9090a1a93669b": {
+      "translation": "Ferramentas",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "6e41ae45b82c2666": {
+      "translation": "`a11y.evidence`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "35c57fbb940864e3": {
+      "translation": "Captura pacotes de evidências invioláveis a partir de arquivos HTML, logs da linha de comando ou outras fontes.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "7b08ddea4f2a2471": {
+      "translation": "**Funcionalidades:**\n- Normalização canônica do HTML\n- Extração de instantâneos do DOM\n- Resumos de integridade SHA-256\n- Registros de procedência de acordo com a especificação PROV",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "01a4779de3914caa": {
+      "translation": "`a11y.diagnose`",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "8b2302705db808a2": {
+      "translation": "Executa verificações de acessibilidade determinísticas em pacotes de evidências.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "6e8c829a8087fb1f": {
+      "translation": "**Funcionalidades:**\n- Verificação de regras WCAG 2.2 AA\n- Resultados vinculados a evidências (JSON Pointer, seletor CSS, intervalos de linhas)\n- Orientações de correção baseadas em \"SAFE\" (patches de intenção, não modificações diretas)\n- Verificação de procedência",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "eb9ad24c5bdd2790": {
+      "translation": "Instalação",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "2dc7b1f6ea4a38fe": {
+      "translation": "Uso",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "108132c2f2896880": {
+      "translation": "Linha de Comando (Recomendado)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "37f272f3359ed104": {
+      "translation": "**Códigos de Saída (compatível com CI):**\n- `0` - Sucesso (nenhum resultado encontrado ou acima de `--fail-on`)\n- `2` - Resultados encontrados (a ferramenta teve sucesso, mas problemas foram detectados)\n- `3` - Falha na captura/validação (entrada inválida, erro de esquema)\n- `4` - Verificação de procedência falhou (inconsistência no resumo)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "bd065e7ab67f72ad": {
+      "translation": "Como Servidor MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "ca5b48d2635577bb": {
+      "translation": "Regras WCAG (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "18410a69d61dd3f3": {
+      "translation": "ID do Resultado",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "4fe83802bbc45fcc": {
+      "translation": "Descrição",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "93982127e708d976": {
+      "translation": "------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "d94afbcff5759c30": {
+      "translation": "-----------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "7561209f94247c19": {
+      "translation": "-------------",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "29a6245f12080d30": {
+      "translation": "Atributo \"lang\" ausente no elemento HTML",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "d693f5ded1080779": {
+      "translation": "Atributo \"alt\" ausente no elemento \"img\"",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "78bef83cc8416a7b": {
+      "translation": "Botão sem nome acessível",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "06d767304289ab83": {
+      "translation": "Link sem nome acessível",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "939c56dbde04924d": {
+      "translation": "Campo de formulário sem rótulo",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "ce34c612f179cb2f": {
+      "translation": "Catálogo de IDs de Métodos (v0.1)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "f4daaaf28479d36f": {
+      "translation": "IDs de métodos estáveis para rastreamento de procedência. Consulte [PROV_METHODS_CATALOG.md](PROV_METHODS_CATALOG.md) para documentação completa.",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "03dc9e459ef0cf17": {
+      "translation": "ID do Método",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "7336fb44be95c646": {
+      "translation": "Envolver em envelope MCP",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "6481955267e75a71": {
+      "translation": "Criação de registro de procedência",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "a246c4812041fc9c": {
+      "translation": "Verificação de integridade SHA-256",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "63c473233455de72": {
+      "translation": "Captura de HTML com normalização",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "0d5440651be73e41": {
+      "translation": "Extração de instantâneo do DOM",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "74abe7295f74148d": {
+      "translation": "Avaliação de regras WCAG",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "35454dd443f1322b": {
+      "translation": "Extração de evidências JSON Pointer",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "c8b92d8008b25255": {
+      "translation": "Extração de evidências CSS selector",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "7c7219ff19748a9b": {
+      "translation": "Esquemas",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "778a58efebca7421": {
+      "translation": "Esquemas JSON são fornecidos para validação:",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "a312821ed795eeef": {
+      "translation": "- [`envelope.schema.v0.1.json`](src/schemas/envelope.schema.v0.1.json) - Formato de envelope MCP\n- [`evidence.bundle.schema.v0.1.json`](src/schemas/evidence.bundle.schema.v0.1.json) - Formato de pacote de evidências\n- [`diagnosis.schema.v0.1.json`](src/schemas/diagnosis.schema.v0.1.json) - Formato de saída de diagnóstico",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "5f391e9e92b2150c": {
+      "translation": "Relacionado",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "08609d00ea055c65": {
+      "translation": "- [prov-spec](https://github.com/mcp-tool-shop-org/prov-spec) - Especificação de procedência\n- [a11y-evidence-engine](https://github.com/mcp-tool-shop-org/a11y-evidence-engine) - Scanner de linha de comando\n- [a11y-assist](https://github.com/mcp-tool-shop-org/a11y-assist) - Consultor de correção\n- [a11y-demo-site](https://github.com/mcp-tool-shop-org/a11y-demo-site) - Demonstração com fluxos de trabalho de CI",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "2aca9b0e72841008": {
+      "translation": "Licença",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    },
+    "8026854d56a5486a": {
+      "translation": "[MIT](LICENSE)",
+      "model": "translategemma:12b",
+      "timestamp": 1772087304199
+    }
+  }
+}
