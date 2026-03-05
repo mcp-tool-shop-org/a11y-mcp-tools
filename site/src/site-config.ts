@@ -15,7 +15,7 @@ export const config: SiteConfig = {
     headlineAccent: 'accessibility with evidence.',
     description: 'MCP tools for accessibility evidence capture and diagnosis. Canonical HTML, DOM snapshots, SHA-256 digests, WCAG 2.2 AA rule checking, and prov-spec provenance \u2014 CLI and MCP server.',
     primaryCta: { href: '#quick-start', label: 'Get started' },
-    secondaryCta: { href: '#features', label: 'Learn more' },
+    secondaryCta: { href: 'handbook/', label: 'Read the Handbook' },
     previews: [
       { label: 'Install', code: 'npm install -g @accessibility-suite/mcp-tools' },
       { label: 'Capture', code: 'a11y evidence --target index.html --dom-snapshot' },
